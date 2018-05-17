@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>分类</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav mui-bg">
+			<div class="mui-pull-left">
+				<a href="index.html" title="" ><img src="images/top_arrowleft.png" /></a>
+			</div>
+			<h1 class="mui-title">全部分类</h1>
+		</header>
+
+		<div class="mui-content mui-row mui-fullscreen mui-content-cot">
+			<div class="left-label">
+				<div  id="segmentedControls" th:each="category : ${categoryList}" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+					<a class="mui-control-item" th:text="${category.getCategoryName()}" href="#content1"></a>
+				</div>
+			</div>
+			<div class="right-conten">
+				<div id="segmentedControlContents" class="mui-col-xs-12">
+					<div id="content1" class="mui-control-content mui-active">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<div class="mui-row mui-right-all">
+									<div class="product">
+										<a href="category.html" >
+											<img src="images/classify.jpg" />
+											<p>全部</p>
+										</a>
+									</div>
+									<div class="product">
+										<a href="product_info.html" >
+											<img src="images/classify01.jpg" />
+											<p>粮油调味 </p>
+
+										</a>
+									</div>
+									<div class="product">
+										<a href="product_info.html" >
+											<img src="images/classify02.jpg" />
+											<p>生鲜食品</p>
+										</a>
+									</div>
+									<div class="product">
+										<a href="product_info.html" >
+											<img src="images/classify04.jpg" />
+											<p>休闲食品</p>
+										</a>
+									</div>
+									<div class="product">
+										<a href="product_info.html" >
+											<img src="images/classify05.jpg" />
+											<p>奶类制品1</p>
+										</a>
+									</div>
+									<div class="product">
+										<a href="product_info.html" >
+											<img src="images/classify06.jpg" />
+											<p>名酒饮料1</p>
+										</a>
+									</div>
+									<div class="product">
+										<a href="product_info.html" >
+											<img src="images/classify07.jpg" />
+											<p>保健品1</p>
+										</a>
+									</div>
+									<div class="product">
+										<a href="product_info.html" >
+											<img src="images/classify08.jpg" />
+											<p>冲调茶饮</p>
+										</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		<script src="js/mui.min.js"></script>
+        <script src="js/style.js"></script>
+	</body>
+
+</html>
