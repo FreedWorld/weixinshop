@@ -9,7 +9,7 @@ import lombok.Getter;
  * @Modified By:
  */
 @Getter
-public enum OrderStatusEnum {
+public enum OrderStatusEnum implements CodeEnum {
 
 
     NEW(0,"新订单"),
@@ -25,6 +25,5 @@ public enum OrderStatusEnum {
         this.code = code;
         this.message = message;
     }
-
 
 }

@@ -22,7 +22,9 @@ public enum  ResultVoCodeEnum {
     ORDER_PAY_STATUS_ERROR(16,"订单支付状态不正确"),
     PARAM_ERROR(17,"参数不正确"),
     CART_EMPTY(18,"购物车为空"),
-    ORDER_OWNER_ERROR(19,"该订单无权访问！")
+    ORDER_OWNER_ERROR(19,"该订单无权访问！"),
+    ORDER_CANCEL_SUCCESS(20,"取消订单成功!"),
+    ORDER_FINISH_SUCCESS(21,"完结订单成功！"),
     ;
 
 

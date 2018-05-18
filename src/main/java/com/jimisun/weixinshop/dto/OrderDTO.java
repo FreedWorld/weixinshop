@@ -1,7 +1,11 @@
 package com.jimisun.weixinshop.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.jimisun.weixinshop.entity.OrderDetail;
+import com.jimisun.weixinshop.enums.OrderStatusEnum;
+import com.jimisun.weixinshop.enums.PayStatusEnum;
+import com.jimisun.weixinshop.utils.EnumUtil;
 import com.jimisun.weixinshop.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
@@ -54,8 +58,17 @@ public class OrderDTO {
     private Date updateTime;
 
     //给返回的字段附上初始值List<OrderDetail>orderDetailList = new ArrayList<>();
-
     List<OrderDetail>orderDetailList;
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum(){
+        return EnumUtil.getByCode(orderStatus,OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum(){
+        return EnumUtil.getByCode(payStatus,PayStatusEnum.class);
+    }
 
 
 }
