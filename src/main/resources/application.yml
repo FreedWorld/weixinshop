@@ -11,6 +11,18 @@ spring:
     open-in-view: true
   jackson:
     default-property-inclusion: non_null
+  freemarker:
+    allow-request-override: false
+    cache: true
+    check-template-location: true
+    charset: utf-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    template-loader-path: classpath:/templates
+
+
 server:
   servlet:
     context-path: /sell

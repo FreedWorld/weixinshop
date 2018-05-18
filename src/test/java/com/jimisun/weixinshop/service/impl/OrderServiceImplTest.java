@@ -4,6 +4,7 @@ import com.jimisun.weixinshop.WeixinshopApplicationTests;
 import com.jimisun.weixinshop.dto.OrderDTO;
 import com.jimisun.weixinshop.entity.OrderDetail;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -83,5 +84,12 @@ public class OrderServiceImplTest extends WeixinshopApplicationTests {
         PageRequest pageRequest = new PageRequest(0,5);
         Page<OrderDTO>orderDTOPage = orderService.findList(openId,pageRequest);
         log.info("查询结果{}",orderDTOPage);
+    }
+
+    @Test
+    public void findList1() {
+        PageRequest pageRequest = new PageRequest(0,10);
+        Page<OrderDTO>orderDTOPage = orderService.findList(pageRequest);
+        Assert.assertNotEquals(0,orderDTOPage.getContent().size());
     }
 }
