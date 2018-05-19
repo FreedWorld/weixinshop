@@ -25,6 +25,7 @@ public enum  ResultVoCodeEnum {
     ORDER_OWNER_ERROR(19,"该订单无权访问！"),
     ORDER_CANCEL_SUCCESS(20,"取消订单成功!"),
     ORDER_FINISH_SUCCESS(21,"完结订单成功！"),
+    PRODUCT_STATUS_ERROR(22,"商品状态不正确！")
     ;
 
 

@@ -43,7 +43,6 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     }
 
     @Override
-    @Transactional
     public void increaseStock(List<CartDTO> cartDTOList) {
         for (CartDTO cartDao: cartDTOList) {
             ProductInfo productInfo = productInfoDao.getOne(cartDao.getProductId());
@@ -57,7 +56,6 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     }
 
     @Override
-    @Transactional
     public void decreaseStock(List<CartDTO> cartDTOList) {
         for(CartDTO cartDTO : cartDTOList){
             ProductInfo productInfo = productInfoDao.getOne(cartDTO.getProductId());
@@ -72,5 +70,36 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 
             productInfoDao.save(productInfo);
         }
+    }
+
+    @Override
+    public ProductInfo onSale(String productId) {
+        ProductInfo productInfo =
+                productInfoDao.getOne(productId);
+        if(productInfo==null){
+            throw new SellException(ResultVoCodeEnum.PRODUCT_NOT_EXIST);
+        }
+        if(productInfo.getProductInfoStatusEnum()==ProductInfoStatusEnum.UP){
+            throw new SellException(ResultVoCodeEnum.PRODUCT_STATUS_ERROR);
+        }
+
+        //更新商品状态
+        productInfo.setProductStatus(ProductInfoStatusEnum.UP.getCode());
+        return productInfoDao.save(productInfo);
+    }
+
+    @Override
+    public ProductInfo offSale(String productId) {
+        ProductInfo productInfo = productInfoDao.getOne(productId);
+        if(productInfo==null){
+            throw new SellException(ResultVoCodeEnum.PRODUCT_NOT_EXIST);
+        }
+        if(productInfo.getProductInfoStatusEnum()==ProductInfoStatusEnum.DOWN){
+            throw new SellException(ResultVoCodeEnum.PRODUCT_STATUS_ERROR);
+        }
+
+        //更新商品状态
+        productInfo.setProductStatus(ProductInfoStatusEnum.DOWN.getCode());
+        return productInfoDao.save(productInfo);
     }
 }

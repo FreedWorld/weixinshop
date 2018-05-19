@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ProductInfoService {
 
-    //通过商品id查询一个商品
+    /**通过id查询一个商品**/
     ProductInfo findOne(String productId);
 
     /**
@@ -17,17 +17,23 @@ public interface ProductInfoService {
      */
     List<ProductInfo> findUpAll();
 
-    //查询所有商品（后台） 需要分页
+    /**查询所有商品需要分页**/
     Page<ProductInfo> findAll(Pageable pageable);
 
-    //添加商品的方法
+    /**添加商品**/
     ProductInfo save(ProductInfo productInfo);
 
-    //加库存
+    /**增加库存**/
     void increaseStock(List<CartDTO>cartDTOList);
 
-    // 减库存
+    /**减少库存**/
     void decreaseStock(List<CartDTO>cartDTOList);
+
+    /**上架商品**/
+    ProductInfo onSale(String producId);
+
+    /**下架商品**/
+    ProductInfo offSale(String productId);
 
 
 }

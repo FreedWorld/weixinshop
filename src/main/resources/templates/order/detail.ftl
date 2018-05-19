@@ -1,16 +1,15 @@
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>错误提示</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<#include "../common/header.ftl">
 
 <body>
+<div id="wrapper" class="toggled">
 
-
+    <#--边栏sidebar-->
+    <#include "../common/nav.ftl">
 
 
     <#--主要内容content-->
+    <div id="page-content-wrapper">
         <div class="container">
             <div class="row clearfix">
                 <div class="col-md-4 column">
@@ -64,6 +63,9 @@
                 </#if>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

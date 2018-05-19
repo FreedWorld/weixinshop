@@ -1,5 +1,8 @@
 package com.jimisun.weixinshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jimisun.weixinshop.enums.ProductInfoStatusEnum;
+import com.jimisun.weixinshop.utils.EnumUtil;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -7,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @Data
@@ -37,6 +41,19 @@ public class ProductInfo {
 
     //类目编号
     private Integer categoryType;
+
+
+    /** 创建时间. */
+    private Date createTime;
+
+    /** 更新时间. */
+    private Date updateTime;
+
+    @JsonIgnore
+    public ProductInfoStatusEnum getProductInfoStatusEnum(){
+        return EnumUtil.getByCode(productStatus,ProductInfoStatusEnum.class);
+    }
+
 
 
 }
