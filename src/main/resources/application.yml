@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: 123456
-    url: jdbc:mysql://192.168.146.128:3306/weixinshop?characterEncoding=utf-8&useSSL=false
+    password: jimisun
+    url: jdbc:mysql://127.0.0.1:3306/weixinshop?characterEncoding=utf-8&useSSL=false
   jpa:
     hibernate:
       ddl-auto: none
