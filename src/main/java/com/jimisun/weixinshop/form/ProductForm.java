@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 public class ProductForm {
 
 
-
     private String  productId;
 
     //名字
