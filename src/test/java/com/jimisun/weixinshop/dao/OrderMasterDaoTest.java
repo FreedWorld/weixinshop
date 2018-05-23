@@ -28,7 +28,7 @@ public class OrderMasterDaoTest extends WeixinshopApplicationTests {
     public void saveTest(){
         OrderMaster orderMaster = new OrderMaster();
         orderMaster.setOrderId("orderid124");
-        orderMaster.setBuyerName("jimi");
+        orderMaster.setBuyerName("jsfjkslfjl");
         orderMaster.setBuyerPhone("1855549456485648");
         orderMaster.setBuyerAddress("河南");
         orderMaster.setBuyerOpenid(openid);

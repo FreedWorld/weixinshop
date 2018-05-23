@@ -12,6 +12,9 @@ public interface ProductInfoService {
     /**通过id查询一个商品**/
     ProductInfo findOne(String productId);
 
+
+    /**通过type查询商品**/
+    List <ProductInfo> findByCategoryType(Integer categoryType);
     /**
      * 查询所有在架的商品
      */

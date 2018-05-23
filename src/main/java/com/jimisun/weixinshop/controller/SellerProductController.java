@@ -111,6 +111,20 @@ public class SellerProductController {
         return new ModelAndView("product/index", map);
     }
 
+    @GetMapping("/update")
+    public ModelAndView update(@RequestParam(value = "productId", required = true) String productId,
+                              Map<String, Object> map) {
+        if (!StringUtils.isEmpty(productId)) {
+            ProductInfo productInfo = productInfoService.findOne(productId);
+            map.put("productInfo", productInfo);
+        }
+        //查询所有的类目
+        List<ProductCategory> categoryList = productCategoryService.findAll();
+        map.put("categoryList", categoryList);
+
+        return new ModelAndView("product/update", map);
+    }
+
     /**
      * 保存更新商品操作
      * @param form  表单提交对象

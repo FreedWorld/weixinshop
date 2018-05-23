@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--插入头部-->
+<div th:insert="~{common/header :: header}"></div>
+
+
+<body>
+<div id="wrapper" class="toggled">
+
+    <!--插入侧边栏-->
+    <div th:insert="~{common/nav :: nav}"></div>
+
+    <!--主要内容-->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th>类目id</th>
+                            <th>名字</th>
+                            <th>type</th>
+                            <th>创建时间</th>
+                            <th>修改时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <p th:each="category:${categoryList}">
+                            <tr>
+                                <td th:text="${category.categoryId}">${category.categoryId}</td>
+                                <td th:text="${category.categoryName}">${category.categoryName}</td>
+                                <td th:text="${category.categoryType}">${category.categoryType}</td>
+                                <td th:text="${category.createTime}">${category.createTime}</td>
+                                <td th:text="${category.updateTime}">${category.updateTime}</td>
+                                <td><a th:href="@{/seller/category/update(categoryId=${category.categoryId})}">修改</a>
+                                </td>
+                            </tr>
+                        </p>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

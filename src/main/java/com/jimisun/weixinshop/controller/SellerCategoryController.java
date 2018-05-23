@@ -1,8 +1,10 @@
 package com.jimisun.weixinshop.controller;
 
 import com.jimisun.weixinshop.entity.ProductCategory;
+import com.jimisun.weixinshop.entity.ProductInfo;
 import com.jimisun.weixinshop.form.CategoryForm;
 import com.jimisun.weixinshop.service.ProductCategoryService;
+import com.jimisun.weixinshop.service.ProductInfoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
- * 卖家类目
- * Created by 廖师兄
- * 2017-07-23 21:06
+ * @author jimisun
  */
 @Controller
 @RequestMapping("/seller/category")
@@ -28,6 +29,9 @@ public class SellerCategoryController {
 
     @Autowired
     private ProductCategoryService categoryService;
+
+    @Autowired
+    private ProductInfoService productInfoService;
 
     /**
      * 类目列表
@@ -59,7 +63,24 @@ public class SellerCategoryController {
     }
 
     /**
-     * 保存/更新
+     * 跳转更新页面
+     * @param categoryId
+     * @param map
+     * @return
+     */
+    @GetMapping("/update")
+    public ModelAndView update(@RequestParam(value = "categoryId", required = true) Integer categoryId,
+                              Map<String, Object> map) {
+        if (categoryId != null) {
+            ProductCategory productCategory = categoryService.findOne(categoryId);
+            map.put("category", productCategory);
+        }
+
+        return new ModelAndView("category/update", map);
+    }
+
+    /**
+     * 保存/新增
      * @param form
      * @param bindingResult
      * @param map
@@ -76,12 +97,20 @@ public class SellerCategoryController {
         }
 
         ProductCategory productCategory = new ProductCategory();
+        List<ProductInfo>productInfoList = new ArrayList<>();
         try {
             if (form.getCategoryId() != null) {
                 productCategory = categoryService.findOne(form.getCategoryId());
+                productInfoList = productInfoService.findByCategoryType(productCategory.getCategoryType());
             }
             BeanUtils.copyProperties(form, productCategory);
+            //设置分类属性
             categoryService.save(productCategory);
+            //设置原来商品的分类为新分类
+            for(ProductInfo productInfo :productInfoList){
+                productInfo.setCategoryType(form.getCategoryType());
+                productInfoService.save(productInfo);
+            }
         } catch (Exception e) {
             map.put("msg", e.getMessage());
             map.put("url", "/sell/seller/category/list");
@@ -91,4 +120,6 @@ public class SellerCategoryController {
         map.put("url", "/sell/seller/category/list");
         return new ModelAndView("common/success", map);
     }
+
+
 }

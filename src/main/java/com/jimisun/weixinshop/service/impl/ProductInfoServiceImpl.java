@@ -102,4 +102,9 @@ public class ProductInfoServiceImpl implements ProductInfoService {
         productInfo.setProductStatus(ProductInfoStatusEnum.DOWN.getCode());
         return productInfoDao.save(productInfo);
     }
+
+    @Override
+    public List<ProductInfo> findByCategoryType(Integer categoryType) {
+        return productInfoDao.findByCategoryType(categoryType);
+    }
 }

@@ -1,0 +1,99 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--插入头部-->
+<div th:insert="~{common/header :: header}"></div>
+
+<body>
+<div id="wrapper" class="toggled">
+
+    <!--插入侧边栏-->
+    <div th:insert="~{common/nav :: nav}"></div>
+
+    <!--主要内容-->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th>订单id</th>
+                            <th>姓名</th>
+                            <th>手机号</th>
+                            <th>地址</th>
+                            <th>金额</th>
+                            <th>订单状态</th>
+                            <th>支付状态</th>
+                            <th>创建时间</th>
+                            <th colspan="2">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr th:each="orderDTO:${orderDTOPage}">
+                            <td th:text="${orderDTO.orderId}"></td>
+                            <td th:text="${orderDTO.buyerName}"></td>
+                            <td th:text="${orderDTO.buyerPhone}"></td>
+                            <td th:text="${orderDTO.buyerAddress}"></td>
+                            <td th:text="${orderDTO.orderAmount}"></td>
+                            <td th:text="${orderDTO.getOrderStatusEnum().message}"></td>
+                            <td th:text="${orderDTO.getPayStatusEnum().message}"></td>
+                            <td th:text="${orderDTO.createTime}"></td>
+                            <td>
+                                <a th:href="@{/seller/order/detail(orderId=${orderDTO.getOrderId()})}">详情</a></td>
+                            <td>
+                                <p th:if="${orderDTO.getOrderStatusEnum().message}=='新订单'">
+                                    <a th:href="@{/seller/order/cancel(orderId=${orderDTO.getOrderId()})}">取消</a>
+                                </p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="col-md-12 column">
+                    <ul class="pagination  pull-right">
+                        <!--显示上一页-->
+                        <li class="disabled" th:if="${currentPage<=1}"><a href="#">上一页</a></li>
+                        <li th:if="${currentPage>1}"><a href=""
+                                                        th:href="@{/seller/order/list(page=${currentPage - 1},size=${size})}">上一页</a>
+                        </li>
+                        <li th:if="${currentPage-3 >=1}"><a
+                                th:href="@{/seller/order/list(page=${currentPage - 3},size=${size})}"
+                                th:text="${currentPage -3}">idx</a></li>
+                        <li th:if="${currentPage-2 >=1}"><a
+                                th:href="@{/seller/order/list(page=${currentPage - 2},size=${size})}"
+                                th:text="${currentPage -2}">idx</a></li>
+                        <li th:if="${currentPage-1 >=1}"><a
+                                th:href="@{/seller/order/list(page=${currentPage - 1},size=${size})}"
+                                th:text="${currentPage -1}">idx</a></li>
+                        <li class="active"><a href="#" th:text="${currentPage}">1</a></li>
+                        <li th:if="${currentPage+1 <=orderDTOPage.getTotalPages()}"><a
+                                th:href="@{/seller/order/list(page=${currentPage + 1},size=${size})}"
+                                th:text="${currentPage +1}">idx</a></li>
+                        <li th:if="${currentPage+2 <=orderDTOPage.getTotalPages()}"><a
+                                th:href="@{/seller/order/list(page=${currentPage + 2},size=${size})}"
+                                th:text="${currentPage +2}">idx</a></li>
+                        <li th:if="${currentPage+3 <=orderDTOPage.getTotalPages()}"><a
+                                th:href="@{/seller/order/list(page=${currentPage + 3},size=${size})}"
+                                th:text="${currentPage +3}">idx</a></li>
+
+                        <!--显示下一页-->
+                        <li class="disabled" th:if="${currentPage==orderDTOPage.getTotalPages()}"><a href="#">下一页</a>
+                        </li>
+                        <li th:if="${currentPage<orderDTOPage.getTotalPages()}"><a href=""
+                                                                                   th:href="@{/seller/order/list(page=${currentPage + 1},size=${size})}">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

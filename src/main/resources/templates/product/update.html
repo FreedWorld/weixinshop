@@ -1,0 +1,69 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--插入头部-->
+<div th:insert="~{common/header :: header}"></div>
+<body>
+<div id="wrapper" class="toggled">
+
+    <!--插入侧边栏-->
+    <div th:insert="~{common/nav :: nav}"></div>
+
+    <!--主要内容-->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <form role="form" method="post" action="/sell/seller/product/save">
+                        <div class="form-group">
+                            <label>名称</label>
+                            <input name="productName" type="text"
+                                   class="form-control" th:value="${productInfo.productName}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>价格</label>
+                            <input name="productPrice" type="text" class="form-control"
+                                   th:value="${productInfo.productPrice}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>库存</label>
+                            <input name="productStock" type="number" class="form-control"
+                                   th:value="${productInfo.productStock}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>描述</label>
+                            <input name="productDescription" type="text" class="form-control"
+                                   th:value="${productInfo.productDescription}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>图片</label>
+                            <img height="100" width="100" alt=""
+                                 th:src="${productInfo.productIcon}">
+                            <input name="productIcon" type="text" class="form-control"
+                                   th:value="${productInfo.productIcon}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>类目</label>
+
+                            <select multiple="multiple" class="form-control" name="categoryType"
+                                    data-placeholder="请选择分类...">
+
+                                <p th:each="category:${categoryList}">
+                                    <option th:selected="${#strings.contains(productInfo.categoryType,category.getCategoryType())}"
+                                            th:text="${category.getCategoryName()}"
+                                            th:value="${category.getCategoryType()}">模块名称
+                                    </option>
+                                </p>
+
+                            </select>
+                        </div>
+                        <input hidden type="text" name="productId" th:value="${productInfo.productId}">
+                        <button type="submit" class="btn btn-default">提交</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

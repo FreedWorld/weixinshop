@@ -38,7 +38,7 @@ public class GoNavController {
      * GO主页
      * @return
      */
-    @GetMapping({"/index.html","/index",""})
+    @GetMapping({"/index","/index",""})
     public ModelAndView index(){
         ModelAndView modelAndView = new ModelAndView();
 
@@ -116,8 +116,10 @@ public class GoNavController {
         modelAndView.addObject("categoryList",categoryList);
 
 
-        modelAndView.setViewName("categorylist");
+        modelAndView.setViewName("views/categorylist");
         return modelAndView;
     }
+
+
 
 }
