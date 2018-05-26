@@ -33,7 +33,7 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     }
 
     @Override
-    public Page<ProductInfo>findAll(Pageable pageable){
+    public Page<ProductInfo> findAll(Pageable pageable) {
         return productInfoDao.findAll(pageable);
     }
 
@@ -44,12 +44,12 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 
     @Override
     public void increaseStock(List<CartDTO> cartDTOList) {
-        for (CartDTO cartDao: cartDTOList) {
+        for (CartDTO cartDao : cartDTOList) {
             ProductInfo productInfo = productInfoDao.getOne(cartDao.getProductId());
-            if(productInfo==null){
-                throw  new SellException(ResultVoCodeEnum.PRODUCT_NOT_EXIST);
+            if (productInfo == null) {
+                throw new SellException(ResultVoCodeEnum.PRODUCT_NOT_EXIST);
             }
-            Integer result = productInfo.getProductStock()+cartDao.getProductQuantity();
+            Integer result = productInfo.getProductStock() + cartDao.getProductQuantity();
             productInfo.setProductStock(result);
             productInfoDao.save(productInfo);
         }
@@ -57,13 +57,13 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 
     @Override
     public void decreaseStock(List<CartDTO> cartDTOList) {
-        for(CartDTO cartDTO : cartDTOList){
+        for (CartDTO cartDTO : cartDTOList) {
             ProductInfo productInfo = productInfoDao.getOne(cartDTO.getProductId());
-            if(productInfo==null){
-                throw  new SellException(ResultVoCodeEnum.PRODUCT_NOT_EXIST);
+            if (productInfo == null) {
+                throw new SellException(ResultVoCodeEnum.PRODUCT_NOT_EXIST);
             }
-            int result = productInfo.getProductStock()-cartDTO.getProductQuantity();
-            if(result<0){
+            int result = productInfo.getProductStock() - cartDTO.getProductQuantity();
+            if (result < 0) {
                 throw new SellException(ResultVoCodeEnum.PRODUCT_STOCK_ERROR);
             }
             productInfo.setProductStock(result);
@@ -76,10 +76,10 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     public ProductInfo onSale(String productId) {
         ProductInfo productInfo =
                 productInfoDao.getOne(productId);
-        if(productInfo==null){
+        if (productInfo == null) {
             throw new SellException(ResultVoCodeEnum.PRODUCT_NOT_EXIST);
         }
-        if(productInfo.getProductInfoStatusEnum()==ProductInfoStatusEnum.UP){
+        if (productInfo.getProductInfoStatusEnum() == ProductInfoStatusEnum.UP) {
             throw new SellException(ResultVoCodeEnum.PRODUCT_STATUS_ERROR);
         }
 
@@ -91,10 +91,10 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     @Override
     public ProductInfo offSale(String productId) {
         ProductInfo productInfo = productInfoDao.getOne(productId);
-        if(productInfo==null){
+        if (productInfo == null) {
             throw new SellException(ResultVoCodeEnum.PRODUCT_NOT_EXIST);
         }
-        if(productInfo.getProductInfoStatusEnum()==ProductInfoStatusEnum.DOWN){
+        if (productInfo.getProductInfoStatusEnum() == ProductInfoStatusEnum.DOWN) {
             throw new SellException(ResultVoCodeEnum.PRODUCT_STATUS_ERROR);
         }
 
@@ -106,5 +106,17 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     @Override
     public List<ProductInfo> findByCategoryType(Integer categoryType) {
         return productInfoDao.findByCategoryType(categoryType);
+    }
+
+    @Override
+    public List<ProductInfo> findIndexHotVo(Pageable pageable) {
+        List<ProductInfo> list = productInfoDao.findByCategoryType(8, pageable);
+        return list;
+    }
+
+    @Override
+    public List<ProductInfo> findIndexyoulike(Pageable pageable) {
+        List<ProductInfo> list = productInfoDao.findByCategoryType(9, pageable);
+        return list;
     }
 }

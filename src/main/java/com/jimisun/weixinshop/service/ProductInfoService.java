@@ -38,5 +38,11 @@ public interface ProductInfoService {
     /**下架商品**/
     ProductInfo offSale(String productId);
 
+    /**查询首页indexHotVo**/
+    List<ProductInfo> findIndexHotVo(Pageable pageable);
+
+    /**查询首页indexHotVo**/
+    List<ProductInfo> findIndexyoulike(Pageable pageable);
+
 
 }
