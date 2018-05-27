@@ -1,154 +1,186 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<title th:text="${idxcategory.getCategoryName()}"></title>
-		<link th:href="@{/beforestatic/css/mui.min.css}" rel="stylesheet"/>
-		<link th:href="@{/beforestatic/css/style.css}" rel="stylesheet"/>
-		<link th:href="@{/beforestatic/css/nutrition.css}" rel="stylesheet"/>
-		<script type="text/javascript" charset="utf-8"></script>
-	</head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title th:text="${idxcategory.getCategoryName()}"></title>
+    <link th:href="@{/beforestatic/css/mui.min.css}" rel="stylesheet"/>
+    <link th:href="@{/beforestatic/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/beforestatic/css/nutrition.css}" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8"></script>
+</head>
 
-	<body>
-		<!-- 主界面不动、菜单移动 -->
-		<!-- 侧滑导航根容器 -->
-		<div class="mui-off-canvas-wrap mui-off-canvas-wrap-new mui-draggable mui-slide-in">
-			<!-- 菜单容器 -->
-			<aside class="mui-off-canvas-right" id="offCanvasSide" >
-				<div class="mui-scroll-wrapper">
-					<div class="mui-scroll" >
-						<!-- 菜单具体展示内容 -->
-						<div class="mui-scroll-title" th:each="cecategory:${categoryList}">
-							<a href="#" th:text="${cecategory.getCategoryName()}" th:href="@{/category/list/(categoryType=${cecategory.getCategoryType()})}">母婴用品</a>
-						</div>
-						<div class="mui-scroll-title">
-							<a href="all.html" th:href="@{/allcategory.html}">更多</a>
-						</div>
-					</div>
-				</div>
-			</aside>
-			<!-- 主页面容器 -->
-			<div class="mui-inner-wrap">
-				<!-- 主页面标题 -->
-				<header class="mui-bar mui-bar-nav" style="background: #10a0e9;">
-					<a class="mui-pull-left" style="padding-top: 6px;"><img src="images/top_arrowleft.png" th:src="@{/beforestatic/images/top_arrowleft.png}" th:href="@{/index.html}"  width="80%" /></a>
-					<h1 class="mui-title" style="color: #fff;" th:text="${idxcategory.getCategoryName()}">营养保健</h1>
-					<a class="mui-pull-right" href="#offCanvasSide" style="padding-top: 10px;"><img src="images/top_right.png" th:src="@{/beforestatic/images/top_right.png}" width="70%" /></a>
-				</header>
-				<nav class="mui-bar mui-bar-tab mui-bar-tit">
+<body>
+<!-- 主界面不动、菜单移动 -->
+<!-- 侧滑导航根容器 -->
+<div class="mui-off-canvas-wrap mui-off-canvas-wrap-new mui-draggable mui-slide-in">
+    <!-- 菜单容器 -->
+    <aside class="mui-off-canvas-right" id="offCanvasSide">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <!-- 菜单具体展示内容 -->
+                <div class="mui-scroll-title" th:each="cecategory:${categoryList}">
+                    <a href="#" th:text="${cecategory.getCategoryName()}"
+                       th:href="@{/category/list/(categoryType=${cecategory.getCategoryType()})}">母婴用品</a>
+                </div>
+                <div class="mui-scroll-title">
+                    <a href="all.html" th:href="@{/allcategory.html}">更多</a>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!-- 主页面容器 -->
+    <div class="mui-inner-wrap">
+        <!-- 主页面标题 -->
+        <header class="mui-bar mui-bar-nav" style="background: #10a0e9;">
+            <a class="mui-pull-left" style="padding-top: 6px;"  th:href="@{/index.html}"><img src="images/top_arrowleft.png"
+                                                                    th:src="@{/beforestatic/images/top_arrowleft.png}"
+                                                                    width="80%"/></a>
+            <h1 class="mui-title" style="color: #fff;" th:text="${idxcategory.getCategoryName()}">营养保健</h1>
+            <a class="mui-pull-right" href="#offCanvasSide" style="padding-top: 10px;"><img src="images/top_right.png"
+                                                                                            th:src="@{/beforestatic/images/top_right.png}"
+                                                                                            width="70%"/></a>
+        </header>
+        <nav class="mui-bar mui-bar-tab mui-bar-tit">
 
-					<a class="mui-tab-item mui-active" href="index.html" th:href="@{/index.html}">
-						<span class="mui-icon mui-icon"><img src="images/index.png" th:src="@{/beforestatic/images/index.png}"  width="100%" /></span>
-						<span class="mui-tab-label">首页</span>
-					</a>
-					<a class="mui-tab-item" href="shopping_cart.html">
-						<span class="mui-icon mui-icon-shopping"><img src="images/shopping_lax.png" th:src="@{/beforestatic/images/shopping_lax.png}" width="100%" /></span>
-						<span class="mui-tab-label">购物车</span>
-					</a>
-					<a class="mui-tab-item" href="orders.html">
-						<span class="mui-icon"><img src="images/word.png" th:src="@{/beforestatic/images/word.png}"  width="100%" /></span>
-						<span class="mui-tab-label">我的订单</span>
-					</a>
-					<a class="mui-tab-item " href="system.html">
-						<span class="mui-icon mui-icon-system"><img src="images/system.png" th:src="@{/beforestatic/images/system.png}" width="100%" /></span>
-						<span class="mui-tab-label">个人中心</span>
-					</a>
+            <a class="mui-tab-item mui-active" href="index.html" th:href="@{/index.html}">
+                <span class="mui-icon mui-icon"><img src="images/index.png" th:src="@{/beforestatic/images/index.png}"
+                                                     width="100%"/></span>
+                <span class="mui-tab-label">首页</span>
+            </a>
+            <a class="mui-tab-item" href="shopping_cart.html">
+                <span class="mui-icon mui-icon-shopping"><img src="images/shopping_lax.png"
+                                                              th:src="@{/beforestatic/images/shopping_lax.png}"
+                                                              width="100%"/></span>
+                <span class="mui-tab-label">购物车</span>
+            </a>
+            <a class="mui-tab-item" href="orders.html">
+                <span class="mui-icon"><img src="images/word.png" th:src="@{/beforestatic/images/word.png}"
+                                            width="100%"/></span>
+                <span class="mui-tab-label">我的订单</span>
+            </a>
+            <a class="mui-tab-item " href="system.html">
+                <span class="mui-icon mui-icon-system"><img src="images/system.png"
+                                                            th:src="@{/beforestatic/images/system.png}"
+                                                            width="100%"/></span>
+                <span class="mui-tab-label">个人中心</span>
+            </a>
 
-				</nav>
-				<div class="mui-content mui-content-cot mui-scroll-wrapper">
-					<div class="mui-scroll">
-						<!-- 主界面具体展示内容 -->
-						<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-negative mui-protitle mui-control-nut mui-content-padded" style="margin: 0;">
-							<a href="#middlePopover" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined mui-control-item" style="padding: 5px 20px;" th:text="${idxcategory.getCategoryName()}">保健品<img src="images/bottom.png" /></a>
-							<a href="#middle2Popover" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined mui-control-item" style="padding: 5px 20px;">所有品牌<img src="images/bottom.png"  th:src="@{/beforestatic/images/bottom.png}"/></a>
-							<a href="#middle3Popover" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined mui-control-item" style="padding: 5px 20px;">综合排序<img src="images/bottom.png" th:src="@{/beforestatic/images/bottom.png}"/></a>
-						</div>
+        </nav>
+        <div class="mui-content mui-content-cot mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <!-- 主界面具体展示内容 -->
+                <div id="sliderSegmentedControl"
+                     class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-negative mui-protitle mui-control-nut mui-content-padded"
+                     style="margin: 0;">
+                    <a href="#middlePopover"
+                       class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined mui-control-item"
+                       style="padding: 5px 20px;" th:text="${idxcategory.getCategoryName()}">保健品<img
+                            src="images/bottom.png"/></a>
+                    <a href="#middle2Popover"
+                       class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined mui-control-item"
+                       style="padding: 5px 20px;">所有品牌<img src="images/bottom.png"
+                                                           th:src="@{/beforestatic/images/bottom.png}"/></a>
+                    <a href="#middle3Popover"
+                       class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined mui-control-item"
+                       style="padding: 5px 20px;">综合排序<img src="images/bottom.png"
+                                                           th:src="@{/beforestatic/images/bottom.png}"/></a>
+                </div>
 
-						<div id="middle2Popover" class="mui-popover mui-popover-new" style="display: none;">
-							<div class="mui-popover-arrow mui-bottom" style="left:133.5px"></div>
-							<div class="mui-scroll-wrapper" data-scroll="2">
-								<div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px);">
-									<ul class="mui-table-view">
-										<li class="mui-table-view-cell"  th:each="category:${categoryList}">
-											<a href="#" th:text="${category.getCategoryName()}" th:href="@{/category/list/(categoryType=${category.getCategoryType()})}">Item1</a>
-										</li>
-										<li class="mui-table-view-cell">
-											<a href="#" th:text="全部"  th:href="@{/allcategory.html}">Item2</a>
-										</li>
+                <div id="middle2Popover" class="mui-popover mui-popover-new" style="display: none;">
+                    <div class="mui-popover-arrow mui-bottom" style="left:133.5px"></div>
+                    <div class="mui-scroll-wrapper" data-scroll="2">
+                        <div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px);">
+                            <ul class="mui-table-view">
+                                <li class="mui-table-view-cell" th:each="category:${categoryList}">
+                                    <a href="#" th:text="${category.getCategoryName()}"
+                                       th:href="@{/category/list/(categoryType=${category.getCategoryType()})}">Item1</a>
+                                </li>
+                                <li class="mui-table-view-cell">
+                                    <a href="#" th:text="全部" th:href="@{/allcategory.html}">Item2</a>
+                                </li>
 
-									</ul>
-								</div>
-								<div class="mui-scrollbar mui-scrollbar-vertical">
-									<div class="mui-scrollbar-indicator" style=""></div>
-								</div>
-							</div>
+                            </ul>
+                        </div>
+                        <div class="mui-scrollbar mui-scrollbar-vertical">
+                            <div class="mui-scrollbar-indicator" style=""></div>
+                        </div>
+                    </div>
 
-						</div>
-						<div id="middlePopover" class="mui-popover mui-popover-new" style="display: none;">
-							<div class="mui-popover-arrow mui-bottom" style="left:133.5px"></div>
-							<div class="mui-scroll-wrapper" data-scroll="2">
-								<div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px);">
-									<ul class="mui-table-view">
-										<li class="mui-table-view-cell"  th:each="category:${categoryList}">
-											<a href="#" th:text="${category.getCategoryName()}" th:href="@{/category/list/(categoryType=${category.getCategoryType()})}">Item1</a>
-										</li>
-										<li class="mui-table-view-cell">
-											<a href="#" th:text="全部"  th:href="@{/allcategory.html}">Item2</a>
-										</li>
+                </div>
+                <div id="middlePopover" class="mui-popover mui-popover-new" style="display: none;">
+                    <div class="mui-popover-arrow mui-bottom" style="left:133.5px"></div>
+                    <div class="mui-scroll-wrapper" data-scroll="2">
+                        <div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px);">
+                            <ul class="mui-table-view">
+                                <li class="mui-table-view-cell" th:each="category:${categoryList}">
+                                    <a href="#" th:text="${category.getCategoryName()}"
+                                       th:href="@{/category/list/(categoryType=${category.getCategoryType()})}">Item1</a>
+                                </li>
+                                <li class="mui-table-view-cell">
+                                    <a href="#" th:text="全部" th:href="@{/allcategory.html}">Item2</a>
+                                </li>
 
-									</ul>
-								</div>
-								<div class="mui-scrollbar mui-scrollbar-vertical">
-									<div class="mui-scrollbar-indicator" style="transition-duration: 0ms; display: none; height: 8px; transform: translate3d(0px, -8px, 0px) translateZ(0px);"></div>
-								</div>
-							</div>
+                            </ul>
+                        </div>
+                        <div class="mui-scrollbar mui-scrollbar-vertical">
+                            <div class="mui-scrollbar-indicator"
+                                 style="transition-duration: 0ms; display: none; height: 8px; transform: translate3d(0px, -8px, 0px) translateZ(0px);"></div>
+                        </div>
+                    </div>
 
-						</div>
+                </div>
 
-						<div id="middle3Popover" class="mui-popover mui-popover-new" style="display: none;">
-							<div class="mui-popover-arrow mui-bottom" style="left:133.5px"></div>
-							<div class="mui-scroll-wrapper" data-scroll="2">
-								<div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px);">
-									<ul class="mui-table-view">
-										<li class="mui-table-view-cell"  th:each="category:${categoryList}">
-											<a href="#" th:text="${category.getCategoryName()}" th:href="@{/category/list/(categoryType=${category.getCategoryType()})}">Item1</a>
-										</li>
-										<li class="mui-table-view-cell">
-											<a href="#" th:text="全部"  th:href="@{/allcategory.html}">Item2</a>
-										</li>
+                <div id="middle3Popover" class="mui-popover mui-popover-new" style="display: none;">
+                    <div class="mui-popover-arrow mui-bottom" style="left:133.5px"></div>
+                    <div class="mui-scroll-wrapper" data-scroll="2">
+                        <div class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px);">
+                            <ul class="mui-table-view">
+                                <li class="mui-table-view-cell" th:each="category:${categoryList}">
+                                    <a href="#" th:text="${category.getCategoryName()}"
+                                       th:href="@{/category/list/(categoryType=${category.getCategoryType()})}">Item1</a>
+                                </li>
+                                <li class="mui-table-view-cell">
+                                    <a href="#" th:text="全部" th:href="@{/allcategory.html}">Item2</a>
+                                </li>
 
-									</ul>
-								</div>
-								<div class="mui-scrollbar mui-scrollbar-vertical">
-									<div class="mui-scrollbar-indicator" style="transition-duration: 0ms; display: none; height: 8px; transform: translate3d(0px, -8px, 0px) translateZ(0px);"></div>
-								</div>
-							</div>
+                            </ul>
+                        </div>
+                        <div class="mui-scrollbar mui-scrollbar-vertical">
+                            <div class="mui-scrollbar-indicator"
+                                 style="transition-duration: 0ms; display: none; height: 8px; transform: translate3d(0px, -8px, 0px) translateZ(0px);"></div>
+                        </div>
+                    </div>
 
-						</div>
+                </div>
 
-						<div class="mui-row" style="padding-top: 15px;">
-							<div class="product" th:each="product:${productList}">
-								<a href="product_info.html">
-									<img src="images/product02.jpg" th:src="@{/beforestatic/images/product02.jpg}"  width="100%" />
-									<p th:text="${product.getProductName()}">Blackmores澳佳宝胶原蛋白片</p>
-									<div class="money">
-										<div class="money-line money-line-pri">
-											<div class="money-text money-price"><span th:text="${product.getProductPrice()}">￥146</span> ￥238</div>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
+                <div class="mui-row" style="padding-top: 15px;">
+                    <div class="product" th:each="product:${productList}">
+                        <a href="product_info.html" th:href="@{/product/info/(productId=${product.getProductId()})}">
+                            <img src="images/product02.jpg" th:src="@{/beforestatic/images/product02.jpg}"
+                                 width="100%"/>
+                            <p th:text="${product.getProductName()}">Blackmores澳佳宝胶原蛋白片</p>
+                            <div class="money">
+                                <div class="money-line money-line-pri">
+                                    <div class="money-text money-price"><span th:text="${product.getProductPrice()}">￥146</span>
+                                        ￥<span th:text="${product.getProductPrice()*1.5}">238</span></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
 
-					</div>
-				</div>
-			</div>
-			<div class="mui-off-canvas-backdrop"></div>
-		</div>
-		</div>
+            </div>
 
-		<script th:src="@{/beforestatic/js/mui.min.js}"></script>
-		<script th:src="@{/beforestatic/js/style.js}"></script>
-	</body>
+        </div>
+    </div>
+
+    <div class="mui-off-canvas-backdrop"></div>
+</div>
+
+<script th:src="@{/beforestatic/js/mui.min.js}"></script>
+<script th:src="@{/beforestatic/js/style.js}"></script>
+</body>
 
 </html>

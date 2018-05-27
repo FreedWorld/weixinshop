@@ -104,9 +104,11 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     }
 
     @Override
-    public List<ProductInfo> findByCategoryType(Integer categoryType) {
-        return productInfoDao.findByCategoryType(categoryType);
+    public List<ProductInfo> findByCategoryType(Pageable pageable,Integer categoryType) {
+        return productInfoDao.findByCategoryType(categoryType,pageable);
     }
+
+
 
     @Override
     public List<ProductInfo> findIndexHotVo(Pageable pageable) {
@@ -118,5 +120,16 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     public List<ProductInfo> findIndexyoulike(Pageable pageable) {
         List<ProductInfo> list = productInfoDao.findByCategoryType(9, pageable);
         return list;
+    }
+
+    @Override
+    public List<ProductInfo> findBySousuo( String sousuo) {
+        List<ProductInfo>sousuoResult=productInfoDao.findByProductName(sousuo);
+        return sousuoResult;
+    }
+
+    @Override
+    public List<ProductInfo> findByCategoryType(Integer categoryType) {
+        return productInfoDao.findByCategoryType(categoryType);
     }
 }

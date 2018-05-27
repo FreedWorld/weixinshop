@@ -14,6 +14,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -140,24 +141,54 @@ public class GoNavController {
      * @return
      */
     @GetMapping({"/category/list.html","/category/list"})
-    public ModelAndView categoryList(@RequestParam(value = "categoryType",required = false) Integer categoryType,Map<String, Object> map){
-        if(categoryType==null){
-            return new ModelAndView("/allcategory",map);
+    public ModelAndView categoryList(@RequestParam(value = "categoryType",required = false) Integer categoryType,
+                                     @RequestParam(value = "sousuo",required = false) String sousuo,
+                                     @RequestParam(value = "page",required = false,defaultValue = "1") Integer page,
+                                     @RequestParam(value = "size",required = false,defaultValue = "12") Integer size,
+                                     Map<String, Object> map){
+        if(categoryType==null&&StringUtils.isEmpty(sousuo)){
+            return new ModelAndView("redirect:/allcategory.html",map);
         }
 
-        //根据categoryType查询分类
-        List<ProductInfo> list = productInfoService.findByCategoryType(categoryType);
-        map.put("productList",list);
+        if(categoryType!=null){
+            //根据categoryType查询分类
+            List<ProductInfo> list = productInfoService.findByCategoryType(categoryType);
+            map.put("productList",list);
 
-        //查询分类信息
-        ProductCategory category = productCategoryService.findOne(categoryType);
-        map.put("idxcategory",category);
+            //查询分类信息
+            ProductCategory category = productCategoryService.findOne(categoryType);
+            map.put("idxcategory",category);
 
-        //查询所有分类
-        List<ProductCategory> categoryList = productCategoryService.findAll();
-        map.put("categoryList",categoryList);
+            //查询所有分类
+            List<ProductCategory> categoryList = productCategoryService.findAll();
+            map.put("categoryList",categoryList);
 
-        return new ModelAndView("before/categorylist",map);
+
+            return new ModelAndView("before/categorylist",map);
+        }
+
+        if(!StringUtils.isEmpty(sousuo)){
+            //通过关键字查询列表
+            List<ProductInfo> list= productInfoService.findBySousuo(sousuo);
+            map.put("productList",list);
+
+
+            //查询分类信息
+            ProductCategory category = new ProductCategory();
+            category.setCategoryName("搜索结果");
+            map.put("idxcategory",category);
+
+
+            //查询所有分类
+            List<ProductCategory> categoryList = productCategoryService.findAll();
+            map.put("categoryList",categoryList);
+
+            return new ModelAndView("before/categorylist",map);
+        }
+
+        return new ModelAndView("redirect:/allcategory.html",map);
+
+
     }
 
     /**
@@ -165,11 +196,20 @@ public class GoNavController {
      * @param productId
      */
     @GetMapping({"/product/info.html","/product/info"})
-    public ModelAndView productInfo(@RequestParam("productId") String productId,Map<String, Object> map){
+    public ModelAndView productInfo(@RequestParam("productId") String productId, Map<String, Object> map){
         ProductInfo productInfo = productInfoService.findOne(productId);
         map.put("productInfo",productInfo);
         return new ModelAndView("/before/product_info",map);
     }
+
+    @GetMapping({"/search.html","/search"})
+    public ModelAndView searchProduct(Map<String, Object> map){
+        //查询所有分类
+        List<ProductCategory> categoryList = productCategoryService.findAll();
+        map.put("categoryList",categoryList);
+        return new ModelAndView("/before/search",map);
+    }
+
 
 
 

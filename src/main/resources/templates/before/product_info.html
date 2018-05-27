@@ -13,7 +13,7 @@
 <body>
 <header class="mui-bar mui-bar-nav mui-bg">
     <div class="mui-pull-left">
-        <a href="index.html" title=""><img src="images/top_arrowleft.png" th:src="@{/beforestatic/images/top_arrowleft.png}" /></a>
+        <a href="index.html" title=""   th:href="@{/category/list/(categoryType=${productInfo.categoryType})}"><img src="images/top_arrowleft.png" th:src="@{/beforestatic/images/top_arrowleft.png}" /></a>
     </div>
     <h1 class="mui-title">产品详情</h1>
     <div class="mui-pull-right">

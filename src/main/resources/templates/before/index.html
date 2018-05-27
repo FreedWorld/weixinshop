@@ -33,7 +33,7 @@
 				<header class="mui-bar mui-bar-nav" style="background: #10a0e9;">
 					<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide" style="color: #fff;"></a>
 					<h1 class="mui-title" style="color: #fff;">KKmall一站式购物商场</h1>
-					<a class="mui-pull-right" href="sosou.html" style="padding-top: 5px;"><img src="images/sosou.png" th:src="@{/beforestatic/images/sosou.png}" width="100%" /></a>
+					<a class="mui-pull-right" href="search.html" style="padding-top: 5px;"><img src="images/sosou.png" th:src="@{/beforestatic/images/sosou.png}" width="100%" /></a>
 				</header>
 				<nav class="mui-bar mui-bar-tab mui-bar-tit">
 					<a class="mui-tab-item mui-active" href="index.html">
@@ -196,7 +196,7 @@
 						</div>
 						<div class="mui-row" th:each="like:${youlike}">
 							<div class="product">
-								<a href="product_info.html">
+								<a href="product_info.html" th:href="@{/product/info/(productId=${like.getProductId()})}">
 									<img src="images/product12.jpg" th:src="@{/beforestatic/images/product12.jpg}"  width="100%" />
 									<p th:text="${like.getProductName()}">Blackmores澳佳宝胶原蛋白片</p>
 									<div class="money">
