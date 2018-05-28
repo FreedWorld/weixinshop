@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -196,12 +197,24 @@ public class GoNavController {
      * @param productId
      */
     @GetMapping({"/product/info.html","/product/info"})
-    public ModelAndView productInfo(@RequestParam("productId") String productId, Map<String, Object> map){
+    public ModelAndView productInfo(@RequestParam("productId") String productId, Map<String, Object> map,
+                                    HttpSession session){
+        Integer cartSize = 0;
+        Map<Integer,Integer> carts = (Map<Integer,Integer>)session.getAttribute("carts");
+        if(carts!=null){
+            cartSize=carts.size();
+        }
         ProductInfo productInfo = productInfoService.findOne(productId);
         map.put("productInfo",productInfo);
+        map.put("cartSize",cartSize);
         return new ModelAndView("/before/product_info",map);
     }
 
+    /**
+     * 跳转搜索页面
+     * @param map
+     * @return
+     */
     @GetMapping({"/search.html","/search"})
     public ModelAndView searchProduct(Map<String, Object> map){
         //查询所有分类
