@@ -1,0 +1,84 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>全部订单</title>
+		<link  th:href="@{/beforestatic/css/mui.min.css}" rel="stylesheet" />
+		<link  th:href="@{/beforestatic/css/style.css}" rel="stylesheet" />
+		<link  th:href="@{/beforestatic/css/address.css}" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav mui-bg">
+			<div class="mui-pull-left">
+				<a href="" title="" ><img src="images/top_arrowleft.png"  th:src="@{/beforestatic/images/top_arrowleft.png}"/></a>
+			</div>
+			<h1 class="mui-title">全部订单</h1>
+		</header>
+		<div class="mui-content mui-content-cot">
+			<div class="mui-input-row mui-search mui-sosou">
+				<a href="sosou.html">
+					<input type="search" class="mui-input-clear" placeholder="" data-input-clear="1" data-input-search="1" value="请输入搜索订单">
+				<span class="mui-icon mui-icon-clear mui-hidden"></span>
+				<span class="mui-placeholder">
+					<span class="mui-icon mui-icon-search mui-icon-sosou"></span>
+				</span>
+				</a>
+				
+			</div>
+			<div class="mui-content-pro" style="background: #fff;">
+				<div id="slider" class="mui-slider" data-slider="5">
+					<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-negative mui-protitle">
+						<a class="mui-control-item mui-active" href="#item1orders">
+							全部
+						</a>
+						<a class="mui-control-item" href="#item2orders">
+							待付款
+						</a>
+						<a class="mui-control-item" href="#item3orders">
+							待收货
+						</a>
+						<a class="mui-control-item" href="#item4orders">
+							待评价
+						</a>
+						<a class="mui-control-item" href="#item5orders">
+							退换货
+						</a>
+					</div>
+					<div id="item1order">
+					    <div class="mui-orders">
+						<p>订单编号：150916517682<span class="mui-pull-right">待付款</span></p>
+					</div>
+					<div class="mui-orders-pro">
+						<a href="product_info.html">
+							<div class="mui-orders-left">
+							<img src="images/product05.jpg" />
+						</div>
+						<div class="mui-orders-cont">
+							<p>Swisse无腥味野生鱼油1500mg 200片新装 益智</p>
+							<p><span>¥146</span></p>
+							<p>合计：<span>￥292</span></p>
+						</div>
+						<div class="mui-orders-right">
+							<p style="padding-top: 30px;">×2</p>
+						</div>
+						</a>
+					</div>
+					<div class="mui-orders-bottom">
+						<p>共2个商品 实付金额：￥ 175.00</p>
+						<div class="mui-buttom-data mui-pull-right">
+							<button type="button" class="mui-btn mui-btn-danger mui-btn-outlined">取消订单</button>
+							<button type="button" class="mui-btn mui-btn-danger mui-btn-outlined">立即支付</button>
+						</div>
+					</div>
+					<div class="distance"></div>
+				</div>
+			</div>
+		</div>
+		<script  th:src="@{/beforestatic/js/mui.min.js}"></script>
+		<script  th:src="@{/beforestatic/js/style.js}"></script>
+	</body>
+
+</html>

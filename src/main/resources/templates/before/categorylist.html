@@ -49,18 +49,18 @@
                                                      width="100%"/></span>
                 <span class="mui-tab-label">首页</span>
             </a>
-            <a class="mui-tab-item" href="shopping_cart.html">
-                <span class="mui-icon mui-icon-shopping"><img src="images/shopping_lax.png"
-                                                              th:src="@{/beforestatic/images/shopping_lax.png}"
-                                                              width="100%"/></span>
+            <a class="mui-tab-item mui-border" href="shopping_cart.html" th:href="@{/cart/list}">
+                        <span class="mui-icon mui-icon-shopping"><img src="images/shopping_lax.png"  th:src="@{/beforestatic/images/shopping_lax.png}" width="100%"/><span
+                                class="mui-badge mui-badge-danger" th:text="${cartSize}">1</span></span>
                 <span class="mui-tab-label">购物车</span>
             </a>
-            <a class="mui-tab-item" href="orders.html">
+
+            <a class="mui-tab-item" href="orders.html"  th:href="@{/orders.html}">
                 <span class="mui-icon"><img src="images/word.png" th:src="@{/beforestatic/images/word.png}"
                                             width="100%"/></span>
                 <span class="mui-tab-label">我的订单</span>
             </a>
-            <a class="mui-tab-item " href="system.html">
+            <a class="mui-tab-item " href="center.html" th:href="@{/center.html}">
                 <span class="mui-icon mui-icon-system"><img src="images/system.png"
                                                             th:src="@{/beforestatic/images/system.png}"
                                                             width="100%"/></span>

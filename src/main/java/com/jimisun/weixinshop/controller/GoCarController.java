@@ -81,11 +81,14 @@ public class GoCarController {
     }
 
     @RequestMapping("/cart/subtract")
-    public ModelAndView subtractCart(@RequestParam(value = "productId") Integer productId,
+    public ModelAndView subtractCart(@RequestParam(value = "productId") String productId,
                                      HttpSession session){
-        Map<Integer,Integer>carts = (Map<Integer,Integer>) session.getAttribute("carts");
+        Map<String,Integer>carts = (Map<String,Integer>) session.getAttribute("carts");
         if(carts.containsKey(productId)){
             carts.put(productId,carts.get(productId)-1);
+            if(carts.get(productId)<=0){
+                carts.remove(productId);
+            }
         }
         return new ModelAndView("redirect:/cart/list");
     }

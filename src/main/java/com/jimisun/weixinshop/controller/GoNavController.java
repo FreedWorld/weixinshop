@@ -1,9 +1,6 @@
 package com.jimisun.weixinshop.controller;
 
-import com.jimisun.weixinshop.entity.Ad1;
-import com.jimisun.weixinshop.entity.Notice;
-import com.jimisun.weixinshop.entity.ProductCategory;
-import com.jimisun.weixinshop.entity.ProductInfo;
+import com.jimisun.weixinshop.entity.*;
 import com.jimisun.weixinshop.service.Ad1Service;
 import com.jimisun.weixinshop.service.NoticeService;
 import com.jimisun.weixinshop.service.ProductCategoryService;
@@ -221,6 +218,60 @@ public class GoNavController {
         List<ProductCategory> categoryList = productCategoryService.findAll();
         map.put("categoryList",categoryList);
         return new ModelAndView("/before/search",map);
+    }
+
+    /**
+     * 跳转登录页面
+     * @param map
+     * @return
+     */
+    @GetMapping({"/login.html","/login"})
+    public ModelAndView gologin(Map<String, Object> map){
+
+        return new ModelAndView("/before/login",map);
+    }
+
+    /**
+     * 跳转注册页面
+     * @param map
+     * @return
+     */
+    @GetMapping({"/register.html","/register"})
+    public ModelAndView goregister(Map<String, Object> map){
+
+        return new ModelAndView("/before/register",map);
+    }
+
+    /**
+     * 跳转个人中心
+     * @param session
+     * @param map
+     * @return
+     */
+    @GetMapping({"/center.html","/center"})
+    public ModelAndView gocenter(HttpSession session,
+                                 Map<String, Object> map){
+        Customer customer = (Customer)session.getAttribute("existUser");
+        if(customer==null){
+            return new ModelAndView("redirect:/login.html",map);
+        }
+        return new ModelAndView("before/center",map);
+    }
+
+    /**
+     * 跳转订单
+     * @param session
+     * @param map
+     * @return
+     */
+    @GetMapping({"/orders.html","/orders"})
+    public ModelAndView orders(HttpSession session,
+                                 Map<String, Object> map){
+        Customer customer = (Customer)session.getAttribute("existUser");
+        if(customer==null){
+            return new ModelAndView("/before/login",map);
+        }
+        return new ModelAndView("/before/orders",map);
     }
 
 

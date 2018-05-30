@@ -1,0 +1,66 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>登陆KKmall</title>
+    <link th:href="@{/beforestatic/css/mui.min.css}" rel="stylesheet"/>
+    <link th:href="@{/beforestatic/css/style.css}" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+    </script>
+</head>
+
+<body style="background: #f5f5f5;">
+<header class="mui-bar mui-bar-nav mui-bg">
+    <div class="mui-pull-left">
+        <a href="index.html" title=""><img th:src="@{/beforestatic/images/top_arrowleft.png}" th:href="@{/index.html}"/></a>
+    </div>
+    <h1 class="mui-title">用户登陆</h1>
+</header>
+
+<div class="mui-content" style="margin-top: 20px;">
+    <span th:if="${message!=null&&message!=''}" th:text="${message}" style="color: red;"></span>
+    <form class="mui-input-group" action="/customer/login" method="post">
+        <div class="mui-add-new">
+            <div class="mui-input-row">
+                <label>请输入用户名</label>
+                <input type="text" name="username" class="mui-input-clear" placeholder="test01">
+            </div>
+        </div>
+        <div class="mui-add-new">
+            <div class="mui-input-row">
+                <label>请输入密码</label>
+                <input type="password" name="password" class="mui-input-password" placeholder="test01">
+            </div>
+        </div>
+        <div class="mui-add-new">
+            <div class="mui-input-row">
+                <label>验证码</label>
+
+                <img src="/KKStore/zifuCode" th:src="@{/imageCode}" th:href="@{/imageCode}" id="code"
+                     style="margin-top: 5px">
+                <a href="javascript:void(0)" onclick="changeCode()">看不清</a>
+            </div>
+            <input type="text" name="code" class="mui-input-password">
+        </div>
+        <div class="mui-buttom-data mui-button-deta" style="">
+            <button type="submit" class="mui-btn mui-btn-danger mui-data-btn">登陆</button>
+            <a th:href="@{/register.html}">
+                <button type="button" class="mui-btn mui-btn-danger mui-data-btn">没有账号？去注册</button>
+            </a>
+        </div>
+</div>
+</form>
+</div>
+<script th:src="@{/beforestatic/js/mui.min.js}"></script>
+<script th:src="@{/beforestatic/js/style.js}"></script>
+</body>
+
+<script>
+    function changeCode() {
+        document.getElementById("code").src = "/imageCode?d=" + new Date().getTime();
+    }
+</script>
+
+</html>
