@@ -20,6 +20,7 @@
 			<h1 class="mui-title">购物车</h1>
 		</header>
 		<div class="mui-content mui-content-cot" style="margin-bottom: 100px;">
+			<span th:if="${message!=null}" th:text="${message}"></span>
 			<div class="mui-card mui-shopping-cart" style="padding-top: 10px;">
 				<form class="mui-input-group">
 						<div class="mui-table-view-cell mui-media mui-list" th:each="cartItem:${carts}">
@@ -52,7 +53,7 @@
 				<p>合计：<span th:text="${totalPrice}">￥217.80</span><br />免费配送</p>
 			</div>
 			<div class="mui-buttom-data" style="float: right;width: 30%;">
-				<a href="established.html">
+				<a href="established.html" th:href="@{'/order/addorder'}">
 					<button type="button" class="mui-btn mui-btn-danger mui-data-btn">去结算</button>
 				</a>
 			</div>

@@ -1,82 +1,91 @@
-<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<title>确认订单悟.空源码免费下载-5kym.com</title>
-		<link href="css/mui.min.css" rel="stylesheet" />
-		<link href="css/style.css" rel="stylesheet" />
-		<script type="text/javascript" charset="utf-8">
-			mui.init();
-		</script>
-	</head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>确认订单悟.空源码免费下载-5kym.com</title>
+    <link th:href="@{/beforestatic/css/mui.min.css}" rel="stylesheet"/>
+    <link th:href="@{/beforestatic/css/style.css}" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+    </script>
+</head>
 
-	<body>
-		<header class="mui-bar mui-bar-nav mui-bg">
-			<div class="mui-pull-left">
-				<a href="product_inshop.html" title="" ><img src="images/top_arrowleft.png" /></a>
-			</div>
-			<h1 class="mui-title">确认订单</h1>
-			</div>
-		</header>
-		<div class="mui-content mui-content-cot">
-			<ul id="list" class="mui-table-view mui-table-view-chevron mui-date-news" style="margin-top: 0;">
-				<li class="mui-table-view-cell" style="text-align: center;">
-					<a class="mui-navigate-right" href="add_new.html">
-						+新建收货地址
-					</a>
-				</li>
-			</ul>
-			<div class="mui-orders-pro mui-product-news">
-				<div class="mui-orders-left">
-					<img src="images/product05.jpg" />
-				</div>
-				<div class="mui-orders-news">
-					<p>Swisse无腥味野生鱼油1500mg 200片新装 益智200片新装 益智</p>
-					<p>¥146<span class="mui-pull-right">×2</span></p>
-				</div>
-			</div>
-			<div class="mui-orders-pro mui-product-news">
-				<div class="mui-orders-left">
-					<img src="images/product05.jpg" />
-				</div>
-				<div class="mui-orders-news">
-					<p>Swisse无腥味野生鱼油1500mg 200片新装 益智200片新装 益智</p>
-					<p>¥146<span class="mui-pull-right">×2</span></p>
-				</div>
-			</div>
-			<div class="mui-orders-bottom">
-				<div class="mui-bto-news" style="margin-top: 20px;"><span class="mui-pull-left">商品总计：</span><span class="mui-pull-right mui-news-font">￥88.00</span></div>
-				<div class="mui-bto-news"><span class="mui-pull-left">运费：</span><span class="mui-pull-right mui-news-font">包邮</span></div>
-				<a href="#">
-					<div class="mui-right-news">
-						<p>积分抵费></p>
-					</div>
-				</a>
-				<a href="coupon.html">
-					<div class="mui-right-news">
-						<p>选择优惠券></p>
-					</div>
-				</a>
-			</div>
-		</div>
-		<div class="distance-news"></div>
+<body>
+<form action="/order/ensureorder" method="post">
+    <header class="mui-bar mui-bar-nav mui-bg">
+        <div class="mui-pull-left">
+            <a  href="javascript:window.history.go(-1)" title=""><img src="images/top_arrowleft.png" th:src="@{/beforestatic/images/top_arrowleft.png}"/></a>
+        </div>
+        <h1 class="mui-title">确认订单</h1>
+        </div>
+    </header>
+    <div class="mui-content mui-content-cot">
+      <ul id="list" class="mui-table-view mui-table-view-chevron mui-date-news" style="margin-top: 0;" th:if="${customerAddress==null}">
+            <li class="mui-table-view-cell" style="text-align: center;">
+                <a class="mui-navigate-right" href="add_new.html" th:href="@{/customer/address.html}">
+                    +选择收货地址
+                </a>
+            </li>
+        </ul>
+        <ul id="list" class="mui-table-view mui-table-view-chevron mui-date-news" style="margin-top: 0;" th:if="${customerAddress!=null}">
+            <li class="mui-table-view-cell" style="text-align: center;">
+                <a class="mui-navigate-right" href="add_new.html" th:href="@{/customer/address.html}">
+                    +更换收货地址
+                </a>
+            </li>
+            <p th:text="${customerAddress.getName}"></p>
+            <p th:text="${customerAddress.getPhone}"></p>
+            <p th:text="${customerAddress.getArea}"></p>
+            <p th:text="${customerAddress.getAddress}"></p>
+        </ul>
 
-		<div class="mui-input-row mui-search mui-sosou">
-			<input type="search" class="mui-input-clear" placeholder="" data-input-clear="1" data-input-search="1" value="备注说明">
-		</div>
-		<div class="mui-news-bottom">
-			<div class="mui-buttom-data mui-pull-left">
-				<p>应付金额：<span class="mui-news-moery">￥188</span></p>
-			</div>
-			<div class="mui-buttom-data mui-pull-right mui-news-button">
-				<button type="button" class="mui-btn mui-btn-danger">提交订单</button>
-			</div>
-		</div>
+        <div class="mui-orders-pro mui-product-news" th:each="cartItem:${carts}">
+            <div class="mui-orders-left">
+                <img src="images/product05.jpg" th:src="${cartItem.getProductInfo().getProductIcon()}"/>
+            </div>
+            <div class="mui-orders-news">
+                <p th:text="${cartItem.getProductInfo().getProductName()}">Swisse无腥味野生鱼油1500mg 200片新装 益智200片新装 益智</p>
+                <p>¥146<span class="mui-pull-right" th:text="${cartItem.getCount()}">×2</span></p>
+            </div>
+        </div>
 
-		<script src="js/mui.min.js"></script>
-		<script src="js/style.js"></script>
-	</body>
+        <div class="mui-orders-bottom">
+            <div class="mui-bto-news" style="margin-top: 20px;"><span class="mui-pull-left">商品总计：</span><span
+                    class="mui-pull-right mui-news-font" th:text="${totalPrice}">￥88.00</span></div>
+            <div class="mui-bto-news"><span class="mui-pull-left">运费：</span><span class="mui-pull-right mui-news-font">包邮</span>
+            </div>
+            <a href="#" class="mui-disabled">
+                <div class="mui-right-news">
+                    <p>积分抵费></p>
+                </div>
+            </a>
+            <a href="#" class="mui-disabled">
+                <div class="mui-right-news">
+                    <p>选择优惠券></p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="distance-news"></div>
+
+    <div class="mui-input-row mui-search mui-sosou">
+        <input type="search" class="mui-input-clear" placeholder="" data-input-clear="1" data-input-search="1"
+               value="备注说明">
+    </div>
+    <div class="mui-news-bottom">
+        <div class="mui-buttom-data mui-pull-left">
+            <p>应付金额：<span class="mui-news-moery" th:text="${totalPrice}">￥188</span></p>
+        </div>
+        <div class="mui-buttom-data mui-pull-right mui-news-button">
+            <button type="submit" class="mui-btn mui-btn-danger">提交订单</button>
+        </div>
+    </div>
+
+    <script th:src="@{/beforestatic/js/mui.min.js}"></script>
+    <script th:src="@{/beforestatic/js/style.js}"></script>
+
+</form>
+</body>
 
 </html>

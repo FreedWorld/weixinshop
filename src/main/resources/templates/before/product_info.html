@@ -13,25 +13,32 @@
 <body>
 <header class="mui-bar mui-bar-nav mui-bg">
     <div class="mui-pull-left">
-        <a href="index.html" title=""   th:href="@{/category/list/(categoryType=${productInfo.categoryType})}"><img src="images/top_arrowleft.png" th:src="@{/beforestatic/images/top_arrowleft.png}" /></a>
+        <a href="index.html" title="" th:href="@{/category/list/(categoryType=${productInfo.categoryType})}"><img
+                src="images/top_arrowleft.png" th:src="@{/beforestatic/images/top_arrowleft.png}"/></a>
     </div>
     <h1 class="mui-title">产品详情</h1>
     <div class="mui-pull-right">
     </div>
 </header>
 <div class="mui-content mui-content-cot ">
-    <div class="mui-product-img"><img src="images/product.jpg" th:src="${productInfo.getProductIcon()}" width="20%"/></div>
+    <div class="mui-product-img"><img src="images/product.jpg" th:src="${productInfo.getProductIcon()}" width="20%"/>
+    </div>
     <div class="mui-product">
         <div class="mui-product-title">
             <p th:text="${productInfo.getProductName()}">[新品] Swisse无腥味野生鱼油1500mg 200片 新装 益智</p>
         </div>
         <div class="mui-product-button">
-            <button type="button" class="mui-btn mui-btn-danger mui-btn-orange"><img src="images/img.png" th:src="@{/beforestatic/images/img.png}" th:href="@{'#item1mobile'}"
+            <button type="button" class="mui-btn mui-btn-danger mui-btn-orange"><img src="images/img.png"
+                                                                                     th:src="@{/beforestatic/images/img.png}"
+                                                                                     th:href="@{'#item1mobile'}"
                                                                                      style="padding-right: 5px; vertical-align: middle;"/>图文详情
             </button>
         </div>
         <div class="mui-product-money"></span>
-            <p><span th:text="${productInfo.getProductPrice()}">￥146.00</span><span>市场价￥<span th:text="${productInfo.getProductPrice()*1.5}">238.00</span><span style="padding-left: 50px;" >库存：<span th:text="${productInfo.getProductStock()}">946</span>　销量：36</span></p>
+            <p><span th:text="${productInfo.getProductPrice()}">￥146.00</span><span>市场价￥<span
+                    th:text="${productInfo.getProductPrice()*1.5}">238.00</span><span
+                    style="padding-left: 50px;">库存：<span
+                    th:text="${productInfo.getProductStock()}">946</span>　销量：36</span></p>
         </div>
     </div>
     <div class="distance"></div>
@@ -39,8 +46,9 @@
         <ul id="list" class="mui-table-view mui-table-view-chevron" style="margin-top: 0;">
             <li class="mui-table-view-cell">
                 <a class="mui-navigate-right" href="product_inshop.html">
-                    <div class="safe-left">请选择商品数量及规格</div>
+                    <div class="safe-left">请输入要购买的商品数量</div>
                 </a>
+                <input name="productSize" type="text">
             </li>
         </ul>
     </div>
@@ -68,7 +76,8 @@
                      style="transform: translate3d(0px, 0px, 0px) translateZ(0px); transition-duration: 0ms;">
                     <div id="item1mobile" class="mui-slider-item mui-control-content mui-active mui-product-img"
                          style="padding-bottom: 80px;">
-                        <img src="images/product_title.jpg"   th:src="${productInfo.getProductIcon()}" style="width: 15%;"/>
+                        <img src="images/product_title.jpg" th:src="${productInfo.getProductIcon()}"
+                             style="width: 15%;"/>
                         <br>
                         <p th:text="${productInfo.getProductDescription()}">
                             Blackmores澳佳宝胶原蛋白片润泽头发美肤亮甲原片Blackmores澳佳宝胶原蛋白片润泽头发润泽头发美肤亮甲Blackmores澳佳宝胶原蛋白片润泽头发美肤亮亮甲润Blackmores澳佳宝胶原蛋白片润泽头发美肤亮甲润亮Blackmores澳佳宝胶原蛋白片润泽头发美肤亮甲亮甲润Blackmores澳佳宝胶原蛋白片润泽头发美肤亮甲润泽头发</p>
@@ -77,23 +86,27 @@
                 <nav class="mui-bar mui-bar-tab" style="margin-top: 5px; background: #fff">
 
                     <a class="mui-tab-item mui-border mui-disabled" href="register.html">
-                        <span class="mui-icon mui-icon"><img src="images/store.png" th:src="@{/beforestatic/images/store.png}" width="100%"/></span>
+                        <span class="mui-icon mui-icon"><img src="images/store.png"
+                                                             th:src="@{/beforestatic/images/store.png}"
+                                                             width="100%"/></span>
                         <span class="mui-tab-label mui-disabled">收藏</span>
                     </a>
                     <a class="mui-tab-item mui-border" href="shopping_cart.html" th:href="@{/cart/list}">
-                        <span class="mui-icon mui-icon-shopping"><img src="images/shopping_lax.png"  th:src="@{/beforestatic/images/shopping_lax.png}" width="100%"/><span
+                        <span class="mui-icon mui-icon-shopping"><img src="images/shopping_lax.png"
+                                                                      th:src="@{/beforestatic/images/shopping_lax.png}"
+                                                                      width="100%"/><span
                                 class="mui-badge mui-badge-danger" th:text="${cartSize}">1</span></span>
                         <span class="mui-tab-label">购物车</span>
                     </a>
 
-                    <a class="mui-tab-item mui-buttom-shopping" href="product_inshop.html" th:href="@{/cart/addcart(productId=${productInfo.getProductId()})}">
+                    <a class="mui-tab-item mui-buttom-shopping" href="product_inshop.html"
+                       th:href="@{/cart/addcart(productId=${productInfo.getProductId()})}">
                         <span class="mui-tab-label">加入购物车</span>
                     </a>
-                    <a class="mui-tab-item mui-buttom-inshop" href="established.html">
+                    <a class="mui-tab-item mui-buttom-inshop" href="established.html"
+                       th:href="@{/order/addorder(productId=${productInfo.getProductId()})}">
                         <span class="mui-tab-label">立即购买</span>
                     </a>
-
-
 
                 </nav>
                 <script th:src="@{/beforestatic/js/mui.min.js}"></script>
@@ -102,8 +115,6 @@
         </div>
     </div>
 </div>
-
-
 </body>
 
 </html>

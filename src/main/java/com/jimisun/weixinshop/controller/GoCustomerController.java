@@ -68,7 +68,7 @@ public class GoCustomerController {
 
         //检验通过
         session.setAttribute("existUser",result);
-        return new ModelAndView("redirect:/center.html");
+        return new ModelAndView("redirect:/index.html");
 
     }
 
@@ -221,6 +221,13 @@ public class GoCustomerController {
     }
 
 
+    /**
+     * 删除地址列表
+     * @param map
+     * @param id
+     * @param session
+     * @return
+     */
     @GetMapping("/customer/delete")
     public ModelAndView deleteAddress(Map<String,Object>map,
                                     @RequestParam(value = "addressid") Integer id,
@@ -237,6 +244,35 @@ public class GoCustomerController {
 
         return new ModelAndView("redirect:/customer/address.html",map);
     }
+
+
+    /**
+     * 选中用户的一条地址
+     * @param map
+     * @param addressid
+     * @param session
+     * @return
+     */
+    @GetMapping("/customer/ensure")
+    public ModelAndView ensureAddress(Map<String,Object>map,
+                                      @RequestParam(value = "addressid") Integer addressid,
+                                      HttpSession session){
+        //从HttpSerssion中获取用户的用户
+        Customer customer = (Customer) session.getAttribute("existUser");
+        if(customer==null){
+            map.put("message","登陆过期，重新登陆");
+            return new ModelAndView("redirect:/login.html",map);
+        }
+
+        //调用service一条地址
+        customerAddressService.ensurecar(addressid,customer.getOpenid());
+
+        return new ModelAndView("redirect:/customer/address.html",map);
+    }
+
+
+
+
 
 
 

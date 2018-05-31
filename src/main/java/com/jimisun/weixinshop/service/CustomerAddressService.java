@@ -15,4 +15,6 @@ public interface CustomerAddressService {
     List<CustomerAddress> findByOpenid(String openid);
     CustomerAddress findById(Integer id);
     void deleteById(Integer id);
+    void ensurecar(Integer addressid,String openid);
+    CustomerAddress findByStatus(Integer status);
 }

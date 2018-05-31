@@ -2,6 +2,7 @@ package com.jimisun.weixinshop.service.impl;
 
 import com.jimisun.weixinshop.dao.CustomerAddressDao;
 import com.jimisun.weixinshop.entity.CustomerAddress;
+import com.jimisun.weixinshop.enums.CustomerAddressStatusEnum;
 import com.jimisun.weixinshop.service.CustomerAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,27 @@ public class CustomerAddressServiceImpl implements CustomerAddressService {
     @Override
     public void deleteById(Integer id) {
         customerAddressDao.deleteById(id);
+    }
+
+    @Override
+    public void ensurecar(Integer addressid,String openid) {
+
+        //循环遍历将他们的选中状态重置为null
+        List<CustomerAddress>customerAddressList= customerAddressDao.findByOpenid(openid);
+        for(CustomerAddress customerAddress1 : customerAddressList){
+            customerAddress1.setStatus(CustomerAddressStatusEnum.NEW.getCode());
+            customerAddressDao.save(customerAddress1);
+        }
+
+        //设置当前addressid为ture
+        CustomerAddress customerAddress = customerAddressDao.getOne(addressid);
+        customerAddress.setStatus(CustomerAddressStatusEnum.FINISHEND.getCode());
+        customerAddressDao.save(customerAddress);
+    }
+
+    @Override
+    public CustomerAddress findByStatus(Integer status) {
+        CustomerAddress customerAddress = customerAddressDao.findByStatus(status);
+        return customerAddress;
     }
 }
