@@ -66,11 +66,11 @@ public class SellerProductController {
             productInfoService.onSale(productId);
         } catch (SellException e) {
             map.put("msg", e.getMessage());
-            map.put("url", "/sell/seller/product/list");
+            map.put("url", "/seller/product/list");
             return new ModelAndView("common/error", map);
         }
 
-        map.put("url", "/sell/seller/product/list");
+        map.put("url", "/seller/product/list");
         return new ModelAndView("common/success", map);
     }
 
@@ -89,11 +89,11 @@ public class SellerProductController {
             productInfoService.offSale(productId);
         } catch (SellException e) {
             map.put("msg", e.getMessage());
-            map.put("url", "/sell/seller/product/list");
+            map.put("url", "/seller/product/list");
             return new ModelAndView("common/error", map);
         }
 
-        map.put("url", "/sell/seller/product/list");
+        map.put("url", "/seller/product/list");
         return new ModelAndView("common/success", map);
     }
 
@@ -139,7 +139,7 @@ public class SellerProductController {
         //判断校验结果
         if(bindingResult.hasErrors()){
             map.put("msg", bindingResult.getFieldError().getDefaultMessage());
-            map.put("url", "/sell/seller/product/index");
+            map.put("url", "/seller/product/index");
             return new ModelAndView("common/error", map);
         }
 
@@ -158,12 +158,12 @@ public class SellerProductController {
             productInfoService.save(productInfo);
         }catch (SellException e){
             map.put("msg", e.getMessage());
-            map.put("url", "/sell/seller/product/index");
+            map.put("url", "/seller/product/index");
             return new ModelAndView("common/error", map);
         }
 
         //返回结果
-        map.put("url", "/sell/seller/product/list");
+        map.put("url", "/seller/product/list");
         return new ModelAndView("common/success", map);
 
     }

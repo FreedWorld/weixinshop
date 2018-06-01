@@ -60,8 +60,8 @@ public class CustomerAddressServiceImpl implements CustomerAddressService {
     }
 
     @Override
-    public CustomerAddress findByStatus(Integer status) {
-        CustomerAddress customerAddress = customerAddressDao.findByStatus(status);
+    public CustomerAddress findByOpenidAndStatus(String openid,Integer status) {
+        CustomerAddress customerAddress = customerAddressDao.findByOpenidAndStatus(openid,status);
         return customerAddress;
     }
 }

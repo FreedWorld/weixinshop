@@ -14,7 +14,7 @@ import java.util.List;
 public interface CustomerAddressDao extends JpaRepository<CustomerAddress,Integer> {
 
     List<CustomerAddress> findByOpenid(String openid);
-    CustomerAddress findByStatus(Integer status);
+    CustomerAddress findByOpenidAndStatus(String openid,Integer status);
 
 
 }

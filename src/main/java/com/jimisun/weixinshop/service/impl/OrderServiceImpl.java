@@ -199,4 +199,12 @@ public class OrderServiceImpl implements OrderService  {
         List<OrderDTO>orderDTOS =OrderMaster2OrderDTO.convert(orderMasterPage.getContent());
         return  new PageImpl<OrderDTO>(orderDTOS,pageable,orderMasterPage.getTotalElements());
     }
+
+    @Override
+    public Page<OrderDTO> findListAndStatus(String buyerOpenid, Pageable pageable,Integer status) {
+        Page<OrderMaster> orderMasterPage = orderMasterDao.findByBuyerOpenidAndOrderStatus(buyerOpenid,pageable,status);
+        List<OrderDTO>orderDTOS =OrderMaster2OrderDTO.convert(orderMasterPage.getContent());
+        Page<OrderDTO> orderDTOPage = new PageImpl<OrderDTO>(orderDTOS,pageable,orderMasterPage.getTotalElements());
+        return orderDTOPage;
+    }
 }

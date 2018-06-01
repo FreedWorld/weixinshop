@@ -21,7 +21,6 @@ public class OrderDetail {
 
     /** 订单id. */
     private String orderId;
-
     /** 商品id. */
     private String productId;
 
@@ -36,4 +35,6 @@ public class OrderDetail {
 
     /** 商品小图. */
     private String productIcon;
+
+
 }

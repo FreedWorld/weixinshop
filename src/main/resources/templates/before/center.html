@@ -43,41 +43,35 @@
 		<div class="mui-control-item">
 			<ul class="mui-table-view mui-grid-view mui-grid-12 mui-list-shop">
 				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-					<a href="established.html">
+					<a href="established.html" th:href="@{/order/newlist}">
 						<img src="images/personal_21.png" th:src="@{/beforestatic/images/personal_21.png}" width="60%" />
 						<p>待付款</p>
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-					<a href="established.html">
+					<a href="established.html" th:href="@{/order/cancellist}">
 						<img src="images/car.png" th:src="@{/beforestatic/images/car.png}" width="60%" />
-						<p>待收货</p>
+						<p>已取消</p>
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-					<a href="established.html" >
+					<a href="established.html" th:href="@{/order/finishlist}">
 						<img src="images/personal_24.png" th:src="@{/beforestatic/images/personal_24.png}" width="60%" />
-						<p>待评价</p>
-					</a>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-					<a href="established.html" >
-						<img src="images/personal_15.png"  th:src="@{/beforestatic/images/personal_15.png}" width="60%" />
-						<p>退换货</p>
+						<p>已完结</p>
 					</a>
 				</li>
 			</ul>
 		</div>
 		<div class="mui-content mui-content-cot mui-cont-date" style="margin-bottom:100px ;">
 			<div class="mui-table-view-cell mui-media mui-list" style="border-top:1px solid #ddd;">
-				<a href="address.html" class="mui-navigate">
-					<img class="mui-media-object mui-pull-left" src="images/personal_date.jpg" th:src="@{/beforestatic/images/personal_date.png}" width="10%">
+				<a href="address.html" class="mui-navigate" th:href="@{/customer/address.html}">
+					<img class="mui-media-object mui-pull-left" src="images/personal_date.jpg" th:src="@{/beforestatic/images/personal_date.jpg}" width="10%">
 					<div class="mui-media-body mui-list-data">
 						<p>地址管理<span><img src="images/arrow_right.png" th:src="@{/beforestatic/images/arrow_right.png}" width="50%"/></span></p>
 					</div>
 				</a>
 			</div>
-			<div class="mui-table-view-cell mui-media mui-list">
+			<div class="mui-table-view-cell mui-media mui-list mui-disabled">
 				<a href="#" class="mui-navigate">
 					<img class="mui-media-object mui-pull-left" src="images/personal_service.jpg" th:src="@{/beforestatic/images/personal_service.jpg}" width="10%">
 					<div class="mui-media-body mui-list-data">
@@ -85,7 +79,7 @@
 					</div>
 				</a>
 			</div>
-			<div class="mui-table-view-cell mui-media mui-list">
+			<div class="mui-table-view-cell mui-media mui-list mui-disabled">
 				<a href="#" class="mui-navigate">
 					<img class="mui-media-object mui-pull-left" src="images/personal_purse.jpg"  th:src="@{/beforestatic/images/personal_purse.jpg}"   width="10%">
 					<div class="mui-media-body mui-list-data">
@@ -94,14 +88,14 @@
 				</a>
 			</div>
 			<div class="mui-table-view-cell mui-media mui-list">
-				<a href="data.html" class="mui-navigate">
+				<a href="data.html" class="mui-navigate" th:href="@{/customer/data}">
 					<img class="mui-media-object mui-pull-left" src="images/personal_bgblue.jpg" th:src="@{/beforestatic/images/personal_bgblue.jpg}" width="10%">
 					<div class="mui-media-body mui-list-data">
 						<p>个人资料<span><img src="images/arrow_right.png" th:src="@{/beforestatic/images/arrow_right.png}" width="50%"/></span></p>
 					</div>
 				</a>
 			</div>
-			<div class="mui-table-view-cell mui-media mui-list">
+			<div class="mui-table-view-cell mui-media mui-list mui-disabled">
 				<a href="set.html" class="mui-navigate">
 					<img class="mui-media-object mui-pull-left" src="images/set_green.jpg" th:src="@{/beforestatic/images/set_green.jpg}" width="10%">
 					<div class="mui-media-body mui-list-data">
@@ -109,7 +103,7 @@
 					</div>
 				</a>
 			</div>
-			<div class="mui-table-view-cell mui-media mui-list">
+			<div class="mui-table-view-cell mui-media mui-list" th:href="@{/customer/goout}">
 				<a href="login.html" class="mui-navigate">
 					<img class="mui-media-object mui-pull-left" src="images/personal_etxt.jpg" th:src="@{/beforestatic/images/personal_etxt.jpg}" width="10%">
 					<div class="mui-media-body mui-list-data">
@@ -124,19 +118,19 @@
 </div>
 <nav class="mui-bar mui-bar-tab" style="padding: 5px 0 5px;background: #fff">
 
-	<a class="mui-tab-item" href="index.html">
+	<a class="mui-tab-item" th:href="@{/index.html}">
 		<span class="mui-icon mui-icon"><img src="images/system_black.png" th:src="@{/beforestatic/images/system_black.png}" width="100%" /></span>
 		<span class="mui-tab-label">首页</span>
 	</a>
-	<a class="mui-tab-item" href="shopping_cart.html"  th:href="@{/cart/list}">
+	<a class="mui-tab-item"  th:href="@{/cart/list}">
 		<span class="mui-icon mui-icon-shopping"><img src="images/shopping_lax.png" th:src="@{/beforestatic/images/shopping_lax.png}" width="100%" /></span>
 		<span class="mui-tab-label">购物车</span>
 	</a>
-	<a class="mui-tab-item" href="orders.html">
+	<a class="mui-tab-item" th:href="@{/order/list.html}">
 		<span class="mui-icon mui-icon-"><img src="images/word.png" th:src="@{/beforestatic/images/word.png}" width="100%" /></span>
 		<span class="mui-tab-label">我的订单</span>
 	</a>
-	<a class="mui-tab-item mui-active" href="system.html">
+	<a class="mui-tab-item mui-active"  th:href="@{/center.html}">
 		<span class="mui-icon mui-icon-system"><img src="images/system_blue.png" th:src="@{/beforestatic/images/system_blue.png}" width="100%" /></span>
 		<span class="mui-tab-label">个人中心</span>
 	</a>

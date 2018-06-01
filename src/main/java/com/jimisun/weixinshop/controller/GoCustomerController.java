@@ -3,6 +3,7 @@ package com.jimisun.weixinshop.controller;
 import com.jimisun.weixinshop.entity.Customer;
 import com.jimisun.weixinshop.entity.CustomerAddress;
 import com.jimisun.weixinshop.enums.CustomerAddressStatusEnum;
+import com.jimisun.weixinshop.enums.CustomerStatusEnum;
 import com.jimisun.weixinshop.service.CustomerAddressService;
 import com.jimisun.weixinshop.service.CustomerService;
 import com.jimisun.weixinshop.utils.KeyUtil;
@@ -49,18 +50,23 @@ public class GoCustomerController {
         //校验验证码
         if (!session.getAttribute("code").toString().equals(code)) {
             map.put("message", "验证码不正确！");
-            return new ModelAndView("redirect:/login.html", map);
+            return new ModelAndView("before/login", map);
         }
 
         //根据用户名查询数据库账户
         Customer result = customerService.findByUsername(customer);
         if(result==null){
             map.put("message", "用户名不存在！");
-            return new ModelAndView("redirect:/login.html", map);
+            return new ModelAndView("before/login", map);
         }
         if(!result.getPassword().equals(customer.getPassword())){
             map.put("message", "密码错误！");
-            return new ModelAndView("redirect:/login.html", map);
+            return new ModelAndView("before/login", map);
+        }
+
+        if(result.getStatus().equals(CustomerStatusEnum.NEW.getCode())){
+            map.put("message", "该用户被禁止登陆！");
+            return new ModelAndView("before/login", map);
         }
 
         //清除隐秘信息
@@ -102,7 +108,7 @@ public class GoCustomerController {
         //校验用户名重复
         if(customerService.findByUsername(customer)!=null){
             map.put("message", "用户名已存在，请重试！");
-            return new ModelAndView("redi", map);
+            return new ModelAndView("before/register", map);
         }
 
 
@@ -111,6 +117,7 @@ public class GoCustomerController {
         customer.setOpenid(KeyUtil.getUUID());
         customer.setCreateTime(new Date());
         customer.setUpdateTime(new Date());
+        customer.setStatus(CustomerStatusEnum.FINISHEND.getCode());
 
         //调用service
         customerService.register(customer);
@@ -269,6 +276,47 @@ public class GoCustomerController {
 
         return new ModelAndView("redirect:/customer/address.html",map);
     }
+
+
+    /**
+     * 查看个人资料
+     * @param map
+     * @param session
+     * @return
+     */
+    @GetMapping("/customer/data")
+    public ModelAndView data(Map<String,Object>map,
+                                      HttpSession session){
+        //从HttpSerssion中获取用户的用户
+        Customer customer = (Customer) session.getAttribute("existUser");
+        if(customer==null){
+            map.put("message","登陆过期，重新登陆");
+            return new ModelAndView("redirect:/login.html",map);
+        }
+
+        map.put("data",customer);
+
+        return new ModelAndView("before/data",map);
+    }
+
+    /**
+     * 退出账户
+     * @param map
+     * @param session
+     * @return
+     */
+    @GetMapping("/customer/goout")
+    public ModelAndView goout(Map<String,Object>map,
+                             HttpSession session){
+
+        session.invalidate();
+        session.removeAttribute("existUser");
+
+        return new ModelAndView("redirect:/login.html",map);
+    }
+
+
+
 
 
 
