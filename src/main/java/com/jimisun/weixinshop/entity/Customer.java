@@ -1,5 +1,8 @@
 package com.jimisun.weixinshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jimisun.weixinshop.enums.CustomerStatusEnum;
+import com.jimisun.weixinshop.utils.EnumUtil;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -23,6 +26,12 @@ public class Customer {
     private String openid;
     private Date createTime;
     private Date updateTime;
-    private Integer status;
+    private Integer status= CustomerStatusEnum.FINISHEND.getCode();
+
+    @JsonIgnore
+    public CustomerStatusEnum getCustomerStatusEnum(){
+        return EnumUtil.getByCode(status,CustomerStatusEnum.class);
+    }
+
 
 }

@@ -26,7 +26,10 @@ public enum  ResultVoCodeEnum {
     ORDER_CANCEL_SUCCESS(20,"取消订单成功!"),
     ORDER_FINISH_SUCCESS(21,"完结订单成功！"),
     PRODUCT_STATUS_ERROR(22,"商品状态不正确！"),
-    PRODUCT_CATEGORY_NOT_EXIST(23,"商品分类不存在");
+    PRODUCT_CATEGORY_NOT_EXIST(23,"商品分类不存在"),
+    CUSTOMER_STATUS_NORMAL(24,"用户状态设置成功！"),
+    CUSTOMER_STATUS_FORBID(25,"用户状态设置失败！"),
+    ADMIN_AUTH_MISS(26,"身份过期"),
     ;
 
 

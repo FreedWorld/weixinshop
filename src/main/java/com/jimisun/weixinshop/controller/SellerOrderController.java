@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -39,7 +40,13 @@ public class SellerOrderController {
     @GetMapping("/list")
     public ModelAndView list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "10") Integer size,
-                             Map<String, Object> map) {
+                             Map<String, Object> map,
+                             HttpSession session) {
+        if(!GoAdminController.checkAdmin(session)){
+            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
+            return new ModelAndView("auth/login", map);
+        }
+
         PageRequest request = new PageRequest(page - 1, size);
         Page<OrderDTO> orderDTOPage = orderService.findList(request);
         map.put("orderDTOPage", orderDTOPage);
@@ -55,8 +62,18 @@ public class SellerOrderController {
      */
     @GetMapping("/cancel")
     public ModelAndView cancel(@RequestParam("orderId") String orderId,
-                               Map<String, Object> map) {
+                               Map<String, Object> map,
+                               HttpSession session) {
+
+        if(!GoAdminController.checkAdmin(session)){
+            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
+            return new ModelAndView("auth/login", map);
+        }
+
+
         try {
+
+
             OrderDTO orderDTO = orderService.findOne(orderId);
             orderService.cancel(orderDTO);
         } catch (SellException e) {
@@ -79,7 +96,11 @@ public class SellerOrderController {
      */
     @GetMapping("/detail")
     public ModelAndView detail(@RequestParam("orderId") String orderId,
-                               Map<String, Object> map) {
+                               Map<String, Object> map,HttpSession session) {
+        if(!GoAdminController.checkAdmin(session)){
+            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
+            return new ModelAndView("auth/login", map);
+        }
         OrderDTO orderDTO = new OrderDTO();
         try {
             orderDTO = orderService.findOne(orderId);
@@ -102,7 +123,16 @@ public class SellerOrderController {
      */
     @GetMapping("/finish")
     public ModelAndView finished(@RequestParam("orderId") String orderId,
-                                 Map<String, Object> map) {
+                                 Map<String, Object> map,HttpSession session) {
+        if(!GoAdminController.checkAdmin(session)){
+            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
+            return new ModelAndView("auth/login", map);
+        }
+
+        if(!GoAdminController.checkAdmin(session)){
+            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
+            return new ModelAndView("auth/login", map);
+        }
         try {
             OrderDTO orderDTO = orderService.findOne(orderId);
             orderService.finish(orderDTO);

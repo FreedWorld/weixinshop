@@ -1,12 +1,15 @@
 package com.jimisun.weixinshop.enums;
 
+import lombok.Getter;
+
 /**
  * @Author:jimisun
  * @Description:
  * @Date:Created in 15:16 2018-06-01
  * @Modified By:
  */
-public enum  CustomerStatusEnum {
+@Getter
+public enum  CustomerStatusEnum implements CodeEnum {
 
     NEW(1,"禁止使用"),
     FINISHEND(0,"正常使用"),
@@ -21,19 +24,4 @@ public enum  CustomerStatusEnum {
         this.message = message;
     }
 
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }

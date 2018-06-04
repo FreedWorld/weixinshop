@@ -120,7 +120,7 @@ public class GoCustomerController {
         customer.setStatus(CustomerStatusEnum.FINISHEND.getCode());
 
         //调用service
-        customerService.register(customer);
+        customerService.save(customer);
         //响应
         map.put("message", "注册成功,请登陆");
         return new ModelAndView("before/login", map);
@@ -149,6 +149,12 @@ public class GoCustomerController {
         return new ModelAndView("before/address",map);
     }
 
+    /**
+     * 添加收获地址
+     * @param map
+     * @param session
+     * @return
+     */
     @GetMapping({"/customer/add_new","/customer/add_new.html"})
     public ModelAndView goaddnew(Map<String,Object>map,
                                   HttpSession session){

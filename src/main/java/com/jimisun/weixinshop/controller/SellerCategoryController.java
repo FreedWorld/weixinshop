@@ -2,6 +2,7 @@ package com.jimisun.weixinshop.controller;
 
 import com.jimisun.weixinshop.entity.ProductCategory;
 import com.jimisun.weixinshop.entity.ProductInfo;
+import com.jimisun.weixinshop.enums.ResultVoCodeEnum;
 import com.jimisun.weixinshop.form.CategoryForm;
 import com.jimisun.weixinshop.service.ProductCategoryService;
 import com.jimisun.weixinshop.service.ProductInfoService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +41,12 @@ public class SellerCategoryController {
      * @return
      */
     @GetMapping("/list")
-    public ModelAndView list(Map<String, Object> map) {
+    public ModelAndView list(Map<String, Object> map, HttpSession session) {
+
+        if(!GoAdminController.checkAdmin(session)){
+            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
+            return new ModelAndView("auth/login", map);
+        }
         List<ProductCategory> categoryList = categoryService.findAll();
         map.put("categoryList", categoryList);
         return new ModelAndView("category/list", map);
@@ -53,7 +60,11 @@ public class SellerCategoryController {
      */
     @GetMapping("/index")
     public ModelAndView index(@RequestParam(value = "categoryId", required = false) Integer categoryId,
-                              Map<String, Object> map) {
+                              Map<String, Object> map,HttpSession session) {
+        if(!GoAdminController.checkAdmin(session)){
+            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
+            return new ModelAndView("auth/login", map);
+        }
         if (categoryId != null) {
             ProductCategory productCategory = categoryService.findOne(categoryId);
             map.put("category", productCategory);
@@ -70,7 +81,11 @@ public class SellerCategoryController {
      */
     @GetMapping("/update")
     public ModelAndView update(@RequestParam(value = "categoryId", required = true) Integer categoryId,
-                              Map<String, Object> map) {
+                              Map<String, Object> map,HttpSession session) {
+        if(!GoAdminController.checkAdmin(session)){
+            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
+            return new ModelAndView("auth/login", map);
+        }
         if (categoryId != null) {
             ProductCategory productCategory = categoryService.findOne(categoryId);
             map.put("category", productCategory);
@@ -89,7 +104,11 @@ public class SellerCategoryController {
     @PostMapping("/save")
     public ModelAndView save(@Valid CategoryForm form,
                              BindingResult bindingResult,
-                             Map<String, Object> map) {
+                             Map<String, Object> map,HttpSession session) {
+        if(!GoAdminController.checkAdmin(session)){
+            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
+            return new ModelAndView("auth/login", map);
+        }
         if (bindingResult.hasErrors()) {
             map.put("msg", bindingResult.getFieldError().getDefaultMessage());
             map.put("url", "/seller/category/index");

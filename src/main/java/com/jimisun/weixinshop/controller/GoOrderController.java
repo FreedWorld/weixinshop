@@ -206,6 +206,7 @@ public class GoOrderController {
 
         //创建订单OrderDTO
         OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setOrderStatus(OrderStatusEnum.NEW.getCode());
         orderDTO.setBuyerName(customerAddress.getGetName());
         orderDTO.setBuyerOpenid(customerAddress.getOpenid());
         orderDTO.setBuyerAddress(customerAddress.getGetAddress());
@@ -223,6 +224,7 @@ public class GoOrderController {
         //调用service
         OrderDTO result = orderService.create(orderDTO);
         map.put("result",result);
+        map.put("url","/order/list.html");
 
 
         //清空当前用户的session

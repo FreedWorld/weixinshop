@@ -4,6 +4,8 @@ import com.jimisun.weixinshop.dao.CustomerDao;
 import com.jimisun.weixinshop.entity.Customer;
 import com.jimisun.weixinshop.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,12 +21,17 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerDao customerDao;
 
     @Override
-    public void register(Customer customer) {
+    public void save(Customer customer) {
         customerDao.save(customer);
     }
 
     @Override
     public Customer findByUsername(Customer customer) {
         return customerDao.findByUsername(customer.getUsername());
+    }
+
+    @Override
+    public Page<Customer> finAll(Pageable pageable) {
+        return customerDao.findAll(pageable);
     }
 }

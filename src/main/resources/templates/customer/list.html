@@ -1,0 +1,93 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--插入头部-->
+<div th:insert="~{common/header :: header}"></div>
+
+
+<body>
+<div id="wrapper" class="toggled">
+
+    <!--插入侧边栏-->
+    <div th:insert="~{common/nav :: nav}"></div>
+
+    <!--主要内容-->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th>客户id</th>
+                            <th>用户名</th>
+                            <th>openid</th>
+                            <th>创建时间</th>
+                            <th>修改时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <p th:each="customer:${customerList}">
+                            <tr>
+                                <td th:text="${customer.getId()}">${category.categoryId}</td>
+                                <td th:text="${customer.getUsername()}">${category.categoryName}</td>
+                                <td th:text="${customer.getOpenid()}">${category.createTime}</td>
+                                <td th:text="${customer.createTime}">${category.updateTime}</td>
+                                <td th:text="${customer.updateTime}">${category.updateTime}</td>
+                                <td th:if="${customer.getCustomerStatusEnum().getMessage()=='正常使用'}">
+                                    <a th:href="@{/seller/customer/forbid(username=${customer.getUsername()})}">拉黑</a>
+                                </td>
+                                <td th:if="${customer.getCustomerStatusEnum().getMessage()=='禁止使用'}">
+                                    <a th:href="@{/seller/customer/normal(username=${customer.getUsername()})}">设为正常</a>
+                                </td>
+                            </tr>
+                        </p>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="col-md-12 column">
+                    <ul class="pagination  pull-right">
+                        <!--显示上一页-->
+                        <li class="disabled" th:if="${currentPage<=1}"><a href="#">上一页</a></li>
+                        <li th:if="${currentPage>1}"><a href=""
+                                                        th:href="@{/seller/customer/list(page=${currentPage - 1},size=${size})}">上一页</a>
+                        </li>
+                        <li th:if="${currentPage-3 >=1}"><a
+                                th:href="@{/seller/customer/list(page=${currentPage - 3},size=${size})}"
+                                th:text="${currentPage -3}">idx</a></li>
+                        <li th:if="${currentPage-2 >=1}"><a
+                                th:href="@{/seller/customer/list(page=${currentPage - 2},size=${size})}"
+                                th:text="${currentPage -2}">idx</a></li>
+                        <li th:if="${currentPage-1 >=1}"><a
+                                th:href="@{/seller/customer/list(page=${currentPage - 1},size=${size})}"
+                                th:text="${currentPage -1}">idx</a></li>
+                        <li class="active"><a href="#" th:text="${currentPage}">1</a></li>
+                        <li th:if="${currentPage+1 <=customerList.getTotalPages()}"><a
+                                th:href="@{/seller/customer/list(page=${currentPage + 1},size=${size})}"
+                                th:text="${currentPage +1}">idx</a></li>
+                        <li th:if="${currentPage+2 <=customerList.getTotalPages()}"><a
+                                th:href="@{/seller/customer/list(page=${currentPage + 2},size=${size})}"
+                                th:text="${currentPage +2}">idx</a></li>
+                        <li th:if="${currentPage+3 <=customerList.getTotalPages()}"><a
+                                th:href="@{/seller/customer/list(page=${currentPage + 3},size=${size})}"
+                                th:text="${currentPage +3}">idx</a></li>
+
+                        <!--显示下一页-->
+                        <li class="disabled" th:if="${currentPage==customerList.getTotalPages()}"><a href="#">下一页</a>
+                        </li>
+                        <li th:if="${currentPage<customerList.getTotalPages()}"><a href=""
+                                                                                   th:href="@{/seller/customer/list(page=${currentPage + 1},size=${size})}">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

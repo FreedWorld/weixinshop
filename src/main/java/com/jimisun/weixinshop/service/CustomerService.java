@@ -1,6 +1,8 @@
 package com.jimisun.weixinshop.service;
 
 import com.jimisun.weixinshop.entity.Customer;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * @Author:jimisun
@@ -10,7 +12,9 @@ import com.jimisun.weixinshop.entity.Customer;
  */
 public interface CustomerService {
 
-    void register(Customer customer);
+    void save(Customer customer);
 
     Customer findByUsername(Customer customer);
+
+    Page<Customer> finAll(Pageable pageable);
 }

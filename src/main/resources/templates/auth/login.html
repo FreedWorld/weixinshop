@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--插入头部-->
+<div th:insert="~{common/header :: header}"></div>
+
+<body>
+
+<div id="wrapper" class="toggled">
+    <!--主要内容-->
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <form action="/admin/login" method="post">
+                    <fieldset>
+                        <span th:if="${message!=''||message!=null}" th:text="${message}" style="color: red;"></span>
+                        <legend>管理员登陆
+                            <legend>
+                                <label>用户名</label> <input type="text" name="username"/>
+                                <label>密码</label> <input type="password" name="password"/>
+                                <button class="btn" type="submit">登陆</button>
+                            </legend>
+                        </legend>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
