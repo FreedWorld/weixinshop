@@ -158,7 +158,7 @@
                 <div class="mui-row" style="padding-top: 15px;">
                     <div class="product" th:each="product:${productList}">
                         <a href="product_info.html" th:href="@{/product/info/(productId=${product.getProductId()})}">
-                            <img src="images/product02.jpg" th:src="@{/beforestatic/images/product02.jpg}"
+                            <img src="images/product02.jpg"  th:src="@{${product.getProductIcon()}}"
                                  width="100%"/>
                             <p th:text="${product.getProductName()}">Blackmores澳佳宝胶原蛋白片</p>
                             <div class="money">

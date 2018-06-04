@@ -23,4 +23,9 @@ public class NoticeServiceImpl implements NoticeService {
         Notice notice = noticeDao.getOne(1);
         return notice;
     }
+
+    @Override
+    public Notice save(Notice notice) {
+        return noticeDao.save(notice);
+    }
 }

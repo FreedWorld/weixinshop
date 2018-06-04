@@ -20,7 +20,7 @@
 </header>
 <div class="mui-content mui-content-cot">
 
-    <form action="/sell/category/list">
+    <form action="/category/list">
         <div class="mui-input-row mui-search mui-sosou" style="width: 80%;">
             <input type="search" name="sousuo" class="mui-input-clear" placeholder="" data-input-clear="1"
                    data-input-search="1" value="请输入...">
@@ -39,7 +39,7 @@
     <p class="mui-title mui-sosou-title">热门搜索</p>
     <div class="mui-sosou-con">
         <p>
-            <a href="" th:each="category:${categoryList}" style="padding-left: 0px;" th:text="${category.categoryName}">奶粉</a>
+            <a  th:each="category:${categoryList}" style="padding-left: 0px;" th:text="${category.categoryName}" th:href="@{/category/list(categoryType=${category.getCategoryId()})}">奶粉</a>
         </p>
 
     </div>

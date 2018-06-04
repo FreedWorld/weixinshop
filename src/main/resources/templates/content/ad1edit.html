@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--插入头部-->
+<div th:insert="~{common/header :: header}"></div>
+<body>
+<div id="wrapper" class="toggled">
+
+    <!--插入侧边栏-->
+    <div th:insert="~{common/nav :: nav}"></div>
+
+
+    <!--主要内容-->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <form role="form" method="post" action="/seller/ad1/edit">
+                        <input type="hidden" name="id" th:value="${ad1.getId()}">
+                        <div class="form-group">
+                            <label>标题</label>
+                            <input name="name" type="text" class="form-control" th:value="${ad1.getName()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>图片地址</label>
+                            <input name="pic" type="text" class="form-control" th:value="${ad1.getPic()}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>跳转地址</label>
+                            <input name="address" type="text" class="form-control" th:value="${ad1.getAddress()}"/>
+                        </div>
+                        <button type="submit" class="btn btn-default">修改</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

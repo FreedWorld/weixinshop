@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>全部订单</title>
+    <link th:href="@{/beforestatic/css/mui.min.css}" rel="stylesheet"/>
+    <link th:href="@{/beforestatic/css/style.css}" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<header class="mui-bar mui-bar-nav mui-bg" th:href="@{/center.html}">
+    <div class="mui-pull-left" th:href="@{/center.html}">
+        <a title="" href="javascript:window.history.go(-1)"><img src="images/top_arrowleft.png"
+                                                                 th:src="@{/beforestatic/images/top_arrowleft.png}"/></a>
+    </div>
+    <h1 class="mui-title">kkmall--最新公告</h1>
+</header>
+<div class="mui-content mui-content-cot">
+
+
+    <h1 style="font-family: inherit;color: #1a1a1a;margin-top: 50px" align="center" th:text="${notice.getTitle()}"></h1>
+    <p align="center" style="margin-top: 50px;color: red;font-size: inherit" th:text="${notice.getContent()}">内容</p>
+
+
+    <script th:src="@{/beforestatic/js/mui.min.js}"></script>
+    <script th:src="@{/beforestatic/js/style.js}"></script>
+</div>
+
+</body>
+
+</html>

@@ -21,7 +21,7 @@
     </div>
 </header>
 <div class="mui-content mui-content-cot ">
-    <div class="mui-product-img"><img src="images/product.jpg" th:src="${productInfo.getProductIcon()}" width="20%"/>
+    <div class="mui-product-img"><img src="images/product.jpg" th:src="${productInfo.getProductIcon()}" width="100%"/>
     </div>
     <div class="mui-product">
         <div class="mui-product-title">
@@ -38,7 +38,9 @@
             <p><span th:text="${productInfo.getProductPrice()}">￥146.00</span><span>市场价￥<span
                     th:text="${productInfo.getProductPrice()*1.5}">238.00</span><span
                     style="padding-left: 50px;">库存：<span
-                    th:text="${productInfo.getProductStock()}">946</span>　销量：36</span></p>
+                    th:text="${productInfo.getProductStock()}">946</span>　销量：36</span></span>
+            </p>
+
         </div>
     </div>
     <div class="distance"></div>
@@ -76,7 +78,7 @@
                      style="transform: translate3d(0px, 0px, 0px) translateZ(0px); transition-duration: 0ms;">
                     <div id="item1mobile" class="mui-slider-item mui-control-content mui-active mui-product-img"
                          style="padding-bottom: 80px;">
-                        <img src="images/product_title.jpg" th:src="${productInfo.getProductIcon()}"
+                        <img src="images/product_title.jpg" th:src="${productInfo.getProductIcon()}" width="50%"
                              style="width: 15%;"/>
                         <br>
                         <p th:text="${productInfo.getProductDescription()}">

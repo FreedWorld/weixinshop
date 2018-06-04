@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--插入头部-->
+<div th:insert="~{common/header :: header}"></div>
+<body>
+<div id="wrapper" class="toggled">
+
+    <!--插入侧边栏-->
+    <div th:insert="~{common/nav :: nav}"></div>
+
+
+    <!--主要内容-->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <form role="form" method="post" action="/notice/editNotice">
+                        <div class="form-group">
+                            <label>公告名称</label>
+                            <input name="title" type="text" class="form-control" th:value="${notice.getTitle()}" />
+                        </div>
+                        <div class="form-group">
+                            <label>公告内容</label>
+                            <input name="content" type="text" class="form-control" th:value="${notice.getContent()}" />
+                        </div>
+                        <button type="submit" class="btn btn-default">修改</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

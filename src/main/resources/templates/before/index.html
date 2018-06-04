@@ -1,219 +1,264 @@
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-		<title>KKmall一站式购物商场</title>
-		<link  th:href="@{/beforestatic/css/mui.min.css}" rel="stylesheet" />
-		<link  th:href="@{/beforestatic/css/style.css}" rel="stylesheet" />
-		<script type="text/javascript" charset="utf-8"></script>
-	</head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>KKmall一站式购物商场</title>
+    <link th:href="@{/beforestatic/css/mui.min.css}" rel="stylesheet"/>
+    <link th:href="@{/beforestatic/css/style.css}" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8"></script>
+</head>
 
-	<body>
-		<!-- 主界面菜单同时移动 -->
-		<!-- 侧滑导航根容器 -->
-		<div class="mui-off-canvas-wrap mui-draggable">
-			<!-- 主页面容器 -->
-			<div class="mui-inner-wrap">
-				<!-- 菜单容器 -->
-				<aside class="mui-off-canvas-left" id="offCanvasSide">
-					<div class="mui-scroll-wrapper">
-						<div class="mui-scroll">
-							<!-- 菜单具体展示内容 -->
-							<div class="mui-scroll-title" th:each="category:${categoryResult}" >
-								<a th:text="${category.getCategoryName()}" th:href="@{/category/list/(categoryType=${category.getCategoryType()})}">母婴用品</a>
-							</div>
+<body>
+<!-- 主界面菜单同时移动 -->
+<!-- 侧滑导航根容器 -->
+<div class="mui-off-canvas-wrap mui-draggable">
+    <!-- 主页面容器 -->
+    <div class="mui-inner-wrap">
+        <!-- 菜单容器 -->
+        <aside class="mui-off-canvas-left" id="offCanvasSide">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <!-- 菜单具体展示内容 -->
+                    <div class="mui-scroll-title" th:each="category:${categoryResult}">
+                        <a th:text="${category.getCategoryName()}"
+                           th:href="@{/category/list/(categoryType=${category.getCategoryType()})}">母婴用品</a>
+                    </div>
 
-							<div class="mui-scroll-title">
-								<a href="allcategory.html" th:href="@{/allcategory.html}">更多</a>
-							</div>
-						</div>
-					</div>
-				</aside>
-				<!-- 主页面标题 -->
-				<header class="mui-bar mui-bar-nav" style="background: #10a0e9;">
-					<a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide" style="color: #fff;"></a>
-					<h1 class="mui-title" style="color: #fff;">KKmall一站式购物商场</h1>
-					<a class="mui-pull-right" href="search.html" style="padding-top: 5px;"><img src="images/sosou.png" th:src="@{/beforestatic/images/sosou.png}" width="100%" /></a>
-				</header>
-				<nav class="mui-bar mui-bar-tab mui-bar-tit">
-					<a class="mui-tab-item mui-active" href="index.html">
-						<span class="mui-icon mui-icon"><img src="images/index.png" th:src="@{/beforestatic/images/index.png}" width="100%" /></span>
-						<span class="mui-tab-label">首页</span>
-					</a>
-					<a class="mui-tab-item" href="shopping_cart.html" th:href="@{/cart/list}">
-						<span class="mui-icon mui-icon-shopping"><img src="images/shopping_lax.png" th:src="@{/beforestatic/images/shopping_lax.png}" width="100%" /></span>
-						<span class="mui-tab-label">购物车</span>
-					</a>
-					<a class="mui-tab-item" href="orders.html" th:href="@{/order/list.html}">
-						<span class="mui-icon mui-icon"><img src="images/word.png" th:src="@{/beforestatic/images/word.png}" width="100%" /></span>
-						<span class="mui-tab-label">我的订单</span>
-					</a>
-					<a class="mui-tab-item" href="data.html" th:href="@{/center.html}">
-						<span class="mui-icon mui-icon-system"><img src="images/system.png" th:src="@{/beforestatic/images/system.png}" width="100%" /></span>
-						<span class="mui-tab-label">个人中心</span>
-					</a>
-				</nav>
-				<!-- 主页面内容容器 -->
-				<div class="mui-content mui-content-cot mui-scroll-wrapper">
-					<div class="mui-scroll">
-						<!-- 主界面具体展示内容 -->
-						<div class="mui-slider">
-							<div class="mui-slider-group mui-slider-loop" >
+                    <div class="mui-scroll-title">
+                        <a href="allcategory.html" th:href="@{/allcategory.html}">更多</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- 主页面标题 -->
+        <header class="mui-bar mui-bar-nav" style="background: #10a0e9;">
+            <a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide"
+               style="color: #fff;"></a>
+            <h1 class="mui-title" style="color: #fff;">KKmall一站式购物商场</h1>
+            <a class="mui-pull-right" href="search.html" style="padding-top: 5px;"><img src="images/sosou.png"
+                                                                                        th:src="@{/beforestatic/images/sosou.png}"
+                                                                                        width="100%"/></a>
+        </header>
+        <nav class="mui-bar mui-bar-tab mui-bar-tit">
+            <a class="mui-tab-item mui-active" href="index.html">
+                <span class="mui-icon mui-icon"><img src="images/index.png" th:src="@{/beforestatic/images/index.png}"
+                                                     width="100%"/></span>
+                <span class="mui-tab-label">首页</span>
+            </a>
+            <a class="mui-tab-item" href="shopping_cart.html" th:href="@{/cart/list}">
+                <span class="mui-icon mui-icon-shopping"><img src="images/shopping_lax.png"
+                                                              th:src="@{/beforestatic/images/shopping_lax.png}"
+                                                              width="100%"/></span>
+                <span class="mui-tab-label">购物车</span>
+            </a>
+            <a class="mui-tab-item" href="orders.html" th:href="@{/order/list.html}">
+                <span class="mui-icon mui-icon"><img src="images/word.png" th:src="@{/beforestatic/images/word.png}"
+                                                     width="100%"/></span>
+                <span class="mui-tab-label">我的订单</span>
+            </a>
+            <a class="mui-tab-item" href="data.html" th:href="@{/center.html}">
+                <span class="mui-icon mui-icon-system"><img src="images/system.png"
+                                                            th:src="@{/beforestatic/images/system.png}"
+                                                            width="100%"/></span>
+                <span class="mui-tab-label">个人中心</span>
+            </a>
+        </nav>
+        <!-- 主页面内容容器 -->
+        <div class="mui-content mui-content-cot mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <!-- 主界面具体展示内容 -->
+                <div class="mui-slider">
+                    <div class="mui-slider-group mui-slider-loop">
 
-								<!--支持循环，需要重复图片节点-->
-								<div class="mui-slider-item mui-slider-item-duplicate" th:each="ad1:${ad1list}" >
-									<a href="#" th:href="${ad1.getAddress()}"><img src="images/banner.jpg"  th:src="${ad1.getPic()}"></a>
-								</div>
-							</div>
-						</div>
-						<div class="mui-control-item">
-							<ul class="mui-table-view mui-grid-view mui-grid-12">
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-									<a href="#" th:href="@{/category/list/(categoryType=1)}" ><img src="images/index01.png" th:src="@{/beforestatic/images/index01.png}" width="90%" />
-										<p>母婴用品</p>
-									</a>
-								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-									<a href="#" th:href="@{/category/list/(categoryType=2)}"><img src="images/index02.png" th:src="@{/beforestatic/images/index02.png}" width="90%" />
-										<p>美容护肤</p>
-									</a>
-								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-									<a href="categorylist.html" th:href="@{/category/list/(categoryType=3)}"><img src="images/index03.png" th:src="@{/beforestatic/images/index03.png}" width="90%" />
-										<p>营养保健</p>
-									</a>
-								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-									<a href="#" th:href="@{/category/list/(categoryType=4)}"><img src="images/index04.png" th:src="@{/beforestatic/images/index04.png}" width="90%" />
-										<p>时尚服饰</p>
-									</a>
-								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-									<a href="#" th:href="@{/category/list/(categoryType=5)}"><img src="images/index05.png" th:src="@{/beforestatic/images/index05.png}" width="90%" />
-										<p>居家日用</p>
-									</a>
-								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-									<a href="#" th:href="@{/category/list/(categoryType=6)}"><img src="images/index06.png" th:src="@{/beforestatic/images/index06.png}" width="90%" />
-										<p>知名品牌</p>
-									</a>
-								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-									<a href="#" th:href="@{/category/list/(categoryType=7)}"><img src="images/index07.png" th:src="@{/beforestatic/images/index07.png}" width="90%" />
-										<p>男士</p>
-									</a>
-								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-									<a href="allcategory.html" th:href="@{/allcategory.html}"><img src="images/index08.png" th:src="@{/beforestatic/images/index08.png}" width="90%" />
-										<p>更多</p>
-									</a>
-								</li>
-							</ul>
-						</div>
-						<div class="mui-table-view-cell mui-media mui-ad">
-							<a href=""><img class="mui-media-object mui-pull-left" src="images/voice.jpg" th:src="@{/beforestatic/images/voice.jpg}">
-								<div class="mui-media-body">
-									<p class="mui-ellipsis"><strong class="mui-strong">每日公告</strong><span style="padding-left: 5px;" th:text="${notice.getName()}">2016年微商时代全民创业-你还在等什么？</span></p>
+                        <!--支持循环，需要重复图片节点-->
+                        <div class="mui-slider-item mui-slider-item-duplicate" th:each="ad1:${ad1list}">
+                            <a href="#" th:href="${ad1.getAddress()}"><img src="images/banner.jpg"
+                                                                           th:src="${ad1.getPic()}"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mui-control-item">
+                    <ul class="mui-table-view mui-grid-view mui-grid-12">
+                        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+                            <a href="#" th:href="@{/category/list/(categoryType=1)}"><img src="images/index01.png"
+                                                                                          th:src="@{/beforestatic/images/index01.png}"
+                                                                                          width="90%"/>
+                                <p>母婴用品</p>
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+                            <a href="#" th:href="@{/category/list/(categoryType=2)}"><img src="images/index02.png"
+                                                                                          th:src="@{/beforestatic/images/index02.png}"
+                                                                                          width="90%"/>
+                                <p>美容护肤</p>
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+                            <a href="categorylist.html" th:href="@{/category/list/(categoryType=3)}"><img
+                                    src="images/index03.png" th:src="@{/beforestatic/images/index03.png}" width="90%"/>
+                                <p>营养保健</p>
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+                            <a href="#" th:href="@{/category/list/(categoryType=4)}"><img src="images/index04.png"
+                                                                                          th:src="@{/beforestatic/images/index04.png}"
+                                                                                          width="90%"/>
+                                <p>时尚服饰</p>
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+                            <a href="#" th:href="@{/category/list/(categoryType=5)}"><img src="images/index05.png"
+                                                                                          th:src="@{/beforestatic/images/index05.png}"
+                                                                                          width="90%"/>
+                                <p>居家日用</p>
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+                            <a href="#" th:href="@{/category/list/(categoryType=6)}"><img src="images/index06.png"
+                                                                                          th:src="@{/beforestatic/images/index06.png}"
+                                                                                          width="90%"/>
+                                <p>知名品牌</p>
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+                            <a href="#" th:href="@{/category/list/(categoryType=7)}"><img src="images/index07.png"
+                                                                                          th:src="@{/beforestatic/images/index07.png}"
+                                                                                          width="90%"/>
+                                <p>男士</p>
+                            </a>
+                        </li>
+                        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+                            <a href="allcategory.html" th:href="@{/allcategory.html}"><img src="images/index08.png"
+                                                                                           th:src="@{/beforestatic/images/index08.png}"
+                                                                                           width="90%"/>
+                                <p>更多</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mui-table-view-cell mui-media mui-ad">
+                    <a th:href="@{/notice.html}"><img class="mui-media-object mui-pull-left" src="images/voice.jpg"
+                                    th:src="@{/beforestatic/images/voice.jpg}">
+                        <div class="mui-media-body">
+                            <p class="mui-ellipsis"><strong class="mui-strong">每日公告</strong><span
+                                    style="padding-left: 5px;" th:text="${notice.getTitle()}">2016年微商时代全民创业-你还在等什么？</span>
+                            </p>
 
-								</div>
-							</a>
-						</div>
-						<div class="mui-kong"></div>
-						<div class="mui-cont-ad">
-							<div class="mui-card-content mui-container-conter">
-								<div class="mui-media-body mui-media-cont">
-									<strong>热销产品</strong><span class="pull-right"><a href="allcategory.html" th:href="@{/category/list/(categoryType=8)}">更多></a></span>
-								</div>
-								<div class="mui-slider">
-									<div class="mui-slider-group">
-										<!--第一个内容区容器-->
-										<div class="mui-slider-item" th:each="hotlist:${indexhotvo}">
-											<!-- 具体内容 -->
-											<ul class="mui-table-view mui-grid-view mui-grid-12" style="padding: 0px 0px 20px 0 ;">
-												<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"  th:each="hotproduct:${hotlist}">
-													<a href="product_info.html" th:href="@{/product/info/(productId=${hotproduct.getProductId()})}"><img src="images/product05.jpg" th:src="@{/beforestatic/images/product05.jpg}" width="100%" style="border: 1px solid #E0E0E0;" />
-														<p th:text="${hotproduct.getProductName()}">Swisse野生鱼油</p>
-													</a>
-												</li>
-											</ul>
-										</div>
+                        </div>
 
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="mui-kong"></div>
-						<div class="hot">
-							<a th:href="@{/category/list/(categoryType=10)}">
-							<div class="hot-left">
-								<div class="hot-left-top">
-									<div class="text">
-										<h2>今日特卖</h2>
-										<p>品牌大咖一网打尽</p>
-									</div>
-								</div>
-								<div class="hot-right-bot">
-									<img src="images/product09.png" th:src="@{/beforestatic/images/product09.png}" width="46%" />
-								</div>
-							</div>
-							</a>
-							<div class="hot_right">
-								<div class="hot-right-top">
-									<div class="hot-right-proleft">
-										<h2>保护心脏</h2>
-										<p>增强体质，提高免疫力</p>
-									</div>
-									<div class="hot-right-proright">
-										<img src="images/product08.png" th:src="@{/beforestatic/images/product08.png}"  width="20%" />
-									</div>
-								</div>
-								<div class="hot-right-bottom">
-									<div class="hot-right-botleft">
-										<div class="hot-right-proleft">
-											<h2>保护心脏</h2>
-											<p>增强体质，提高免疫力</p>
-										</div>
-										<div class="hot-right-bot">
-											<img src="images/product10.png" th:src="@{/beforestatic/images/product10.png}"  width="80%" style="text-align: center;" />
-										</div>
-									</div>
-									<div class="hot-right-botright">
-										<div class="hot-right-proleft">
-											<h2>保护心脏</h2>
-											<p>增强体质，提高免疫力</p>
-										</div>
-										<div class="hot-right-bot">
-											<img src="images/product11.png" th:src="@{/beforestatic/images/product11.png}"  width="51%" style="text-align: center;" />
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="live">
-								<div class="live-line">
-									<div class="live-text"><img src="images/live.png" th:src="@{/beforestatic/images/live.png}"  width="25%" />猜你喜欢</div>
-								</div>
-							</div>
-						</div>
-						<div class="mui-row" th:each="like:${youlike}">
-							<div class="product">
-								<a href="product_info.html" th:href="@{/product/info/(productId=${like.getProductId()})}">
-									<img src="images/product12.jpg" th:src="@{/beforestatic/images/product12.jpg}"  width="100%" />
-									<p th:text="${like.getProductName()}">Blackmores澳佳宝胶原蛋白片</p>
-									<div class="money">
-										<div class="money-line">
-											<div class="money-text"><span th:text="${like.getProductPrice()}">￥165</span> ￥328</div>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="mui-off-canvas-backdrop"></div>
-			</div>
-		</div>
-		<script  th:src="@{/beforestatic/js/mui.min.js}"></script>
-		<script  th:src="@{/beforestatic/js/style.js}"></script>
-	</body>
+                    </a>
+                </div>
+                <div class="mui-kong"></div>
+                <div class="mui-cont-ad">
+                    <div class="mui-card-content mui-container-conter">
+                        <div class="mui-media-body mui-media-cont">
+                            <strong>热销产品</strong><span class="pull-right"><a href="allcategory.html"
+                                                                             th:href="@{/category/list/(categoryType=8)}">更多></a></span>
+                        </div>
+                        <div class="mui-slider">
+                            <div class="mui-slider-group">
+                                <!--第一个内容区容器-->
+                                <div class="mui-slider-item" th:each="hotlist:${indexhotvo}">
+                                    <!-- 具体内容 -->
+                                    <ul class="mui-table-view mui-grid-view mui-grid-12"
+                                        style="padding: 0px 0px 20px 0 ;">
+                                        <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3"
+                                            th:each="hotproduct:${hotlist}">
+                                            <a href="product_info.html"
+                                               th:href="@{/product/info/(productId=${hotproduct.getProductId()})}"><img
+                                                    src="images/product05.jpg"
+                                                    th:src="@{${hotproduct.getProductIcon()}}" width="100%"
+                                                    style="border: 1px solid #E0E0E0;"/>
+                                                <p th:text="${hotproduct.getProductName()}">Swisse野生鱼油</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mui-kong"></div>
+                <div class="hot">
+                    <a th:href="@{/category/list/(categoryType=10)}">
+                        <div class="hot-left">
+                            <div class="hot-left-top">
+                                <div class="text">
+                                    <h2>今日特卖</h2>
+                                    <p>品牌大咖一网打尽</p>
+                                </div>
+                            </div>
+                            <div class="hot-right-bot">
+                                <img src="images/product09.png" th:src="@{/beforestatic/images/product09.png}"
+                                     width="46%"/>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="hot_right">
+                        <div class="hot-right-top">
+                            <div class="hot-right-proleft">
+                                <h2>保护心脏</h2>
+                                <p>增强体质，提高免疫力</p>
+                            </div>
+                            <div class="hot-right-proright">
+                                <img src="images/product08.png" th:src="@{/beforestatic/images/product08.png}"
+                                     width="20%"/>
+                            </div>
+                        </div>
+                        <div class="hot-right-bottom">
+                            <div class="hot-right-botleft">
+                                <div class="hot-right-proleft">
+                                    <h2>保护心脏</h2>
+                                    <p>增强体质，提高免疫力</p>
+                                </div>
+                                <div class="hot-right-bot">
+                                    <img src="images/product10.png" th:src="@{/beforestatic/images/product10.png}"
+                                         width="80%" style="text-align: center;"/>
+                                </div>
+                            </div>
+                            <div class="hot-right-botright">
+                                <div class="hot-right-proleft">
+                                    <h2>保护心脏</h2>
+                                    <p>增强体质，提高免疫力</p>
+                                </div>
+                                <div class="hot-right-bot">
+                                    <img src="images/product11.png" th:src="@{/beforestatic/images/product11.png}"
+                                         width="51%" style="text-align: center;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="live">
+                        <div class="live-line">
+                            <div class="live-text"><img src="images/live.png" th:src="@{/beforestatic/images/live.png}"
+                                                        width="25%"/>猜你喜欢
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mui-row">
+                    <div class="product"  th:each="like:${youlike}">
+                        <a href="product_info.html" th:href="@{/product/info/(productId=${like.getProductId()})}">
+                            <img src="images/product12.jpg" th:src="@{${like.getProductIcon()}}"
+                                 width="100%"/>
+                            <p th:text="${like.getProductName()}">Blackmores澳佳宝胶原蛋白片</p>
+                            <div class="money">
+                                <div class="money-line">
+                                    <div class="money-text"><span th:text="${like.getProductPrice()}">￥165</span> ￥328
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mui-off-canvas-backdrop"></div>
+    </div>
+</div>
+<script th:src="@{/beforestatic/js/mui.min.js}"></script>
+<script th:src="@{/beforestatic/js/style.js}"></script>
+</body>
 
 </html>

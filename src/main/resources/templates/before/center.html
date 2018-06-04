@@ -22,13 +22,10 @@
 		<div class="mui-system">
 			<a href="login.html">
 				<div class="mui-system-head">
-					<img src="images/system_head.png" th:src="@{/beforestatic/images/system_head.png}" width="100%" />
-					<p>点击登录</p>
+					<img src="images/system_head.png"   th:src="@{/beforestatic/images/top_03.jpg}" width="100%" />
+					<p th:text="${existUser.getUsername()}">点击登录</p>
 				</div>
 			</a>
-			<div class="mui-system-set">
-				<a href="set.html"><img src="images/set.png" th:src="@{/beforestatic/images/set.png}"/></a>
-			</div>
 		</div>
 	</div>
 	<div class="mui-card-content mui-container-conter" style="top: 235px;">

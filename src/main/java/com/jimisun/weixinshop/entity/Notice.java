@@ -18,7 +18,7 @@ public class Notice {
     @Id
     private Integer id;
 
-    private String name;
+    private String title;
 
     private String content;
 

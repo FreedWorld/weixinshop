@@ -11,4 +11,5 @@ import com.jimisun.weixinshop.entity.Notice;
 public interface NoticeService {
 
     Notice findNew();
+    Notice save(Notice notice);
 }

@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--插入头部-->
+<div th:insert="~{common/header :: header}"></div>
+
+
+<body>
+<div id="wrapper" class="toggled">
+
+    <!--插入侧边栏-->
+    <div th:insert="~{common/nav :: nav}"></div>
+
+    <!--主要内容-->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>标题</th>
+                            <th>图片地址</th>
+                            <th>跳转地址</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <p th:each="ad1:${ad1List}">
+                            <tr>
+                                <td th:text="${ad1.getId()}">${category.categoryId}</td>
+                                <td th:text="${ad1.getName()}">${category.categoryName}</td>
+                                <td th:text="${ad1.getPic()}">${category.createTime}</td>
+                                <td th:text="${ad1.getAddress()}">${category.updateTime}</td>
+                                <td>
+                                    <a th:href="@{/seller/ad1/edit.html(id=${ad1.getId()})}">修改</a>/<a class="mui-disabled" th:alt="禁止删除">删除</a>
+                                </td>
+                            </tr>
+                        </p>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

@@ -170,12 +170,10 @@ public class GoNavController {
             List<ProductInfo> list= productInfoService.findBySousuo(sousuo);
             map.put("productList",list);
 
-
             //查询分类信息
             ProductCategory category = new ProductCategory();
             category.setCategoryName("搜索结果");
             map.put("idxcategory",category);
-
 
             //查询所有分类
             List<ProductCategory> categoryList = productCategoryService.findAll();
@@ -204,7 +202,7 @@ public class GoNavController {
         ProductInfo productInfo = productInfoService.findOne(productId);
         map.put("productInfo",productInfo);
         map.put("cartSize",cartSize);
-        return new ModelAndView("/before/product_info",map);
+        return new ModelAndView("before/product_info",map);
     }
 
     /**
@@ -217,7 +215,7 @@ public class GoNavController {
         //查询所有分类
         List<ProductCategory> categoryList = productCategoryService.findAll();
         map.put("categoryList",categoryList);
-        return new ModelAndView("/before/search",map);
+        return new ModelAndView("before/search",map);
     }
 
     /**
@@ -228,7 +226,7 @@ public class GoNavController {
     @GetMapping({"/login.html","/login"})
     public ModelAndView gologin(Map<String, Object> map){
 
-        return new ModelAndView("/before/login",map);
+        return new ModelAndView("before/login",map);
     }
 
     /**
@@ -239,7 +237,7 @@ public class GoNavController {
     @GetMapping({"/register.html","/register"})
     public ModelAndView goregister(Map<String, Object> map){
 
-        return new ModelAndView("/before/register",map);
+        return new ModelAndView("before/register",map);
     }
 
     /**
@@ -255,6 +253,8 @@ public class GoNavController {
         if(customer==null){
             return new ModelAndView("redirect:/login.html",map);
         }
+        map.put("existUser",customer);
+
         return new ModelAndView("before/center",map);
     }
 
@@ -269,10 +269,28 @@ public class GoNavController {
                                  Map<String, Object> map){
         Customer customer = (Customer)session.getAttribute("existUser");
         if(customer==null){
-            return new ModelAndView("/before/login",map);
+            return new ModelAndView("before/login",map);
         }
-        return new ModelAndView("/before/orders",map);
+        return new ModelAndView("before/orders",map);
     }
+
+
+    /**
+     * 跳转公告页面
+     * @param map
+     * @return
+     */
+    @GetMapping({"/notice.html"})
+    public ModelAndView notice(Map<String, Object> map){
+
+        //查询最新公告
+        Notice notice = noticeService.findNew();
+        map.put("notice",notice);
+
+        return new ModelAndView("before/notice",map);
+    }
+
+
 
 
 

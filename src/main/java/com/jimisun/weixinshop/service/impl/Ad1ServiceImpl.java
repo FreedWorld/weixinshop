@@ -26,4 +26,19 @@ public class Ad1ServiceImpl implements Ad1Service {
     public List<Ad1> findAd1All() {
         return ad1Dao.findAll();
     }
+
+    @Override
+    public Ad1 save(Ad1 ad1) {
+        return ad1Dao.save(ad1);
+    }
+
+    @Override
+    public Ad1 findById(Integer id) {
+        return ad1Dao.getOne(id);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        ad1Dao.deleteById(id);
+    }
 }
