@@ -12,7 +12,7 @@
 <body>
 <header class="mui-bar mui-bar-nav mui-bg" th:href="@{/center.html}">
     <div class="mui-pull-left" th:href="@{/center.html}">
-        <a title="" href="javascript:window.history.go(-1)"><img src="images/top_arrowleft.png"
+        <a title="" href="javascript:" onclick="self.location=document.referrer;"><img src="images/top_arrowleft.png"
                                                                  th:src="@{/beforestatic/images/top_arrowleft.png}"/></a>
     </div>
     <h1 class="mui-title">支付订单</h1>
@@ -20,7 +20,7 @@
 <div class="mui-content mui-content-cot">
 
 
-    <p align="center" style="margin-top: 50px;color: red;font-size: inherit">支付成功！,3秒后返回......</p>
+    <p align="center" style="margin-top: 50px;color: red;font-size: inherit">支付成功！3秒后返回订单中心......</p>
 
 
     <script>

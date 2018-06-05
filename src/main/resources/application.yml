@@ -3,11 +3,11 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: jimisun
-    url: jdbc:mysql://127.0.0.1:3306/weixinshop?characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://119.28.193.218:3306/kkmallspringboot?characterEncoding=utf-8&useSSL=false
   jpa:
     hibernate:
       ddl-auto: none
-    show-sql: true
+    show-sql: false
     open-in-view: true
   jackson:
     default-property-inclusion: non_null
@@ -21,7 +21,6 @@ spring:
     mode: HTML5
     prefix: classpath:/templates/
     suffix: .html
-
 server:
   servlet:
     context-path:
