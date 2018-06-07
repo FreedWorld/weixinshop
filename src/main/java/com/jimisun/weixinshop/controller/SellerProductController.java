@@ -2,7 +2,6 @@ package com.jimisun.weixinshop.controller;
 
 import com.jimisun.weixinshop.entity.ProductCategory;
 import com.jimisun.weixinshop.entity.ProductInfo;
-import com.jimisun.weixinshop.enums.ResultVoCodeEnum;
 import com.jimisun.weixinshop.exception.SellException;
 import com.jimisun.weixinshop.form.ProductForm;
 import com.jimisun.weixinshop.service.ProductCategoryService;
@@ -46,10 +45,6 @@ public class SellerProductController {
     public ModelAndView list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "10") Integer size,
                              Map<String, Object> map, HttpSession session) {
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
         PageRequest request = new PageRequest(page - 1, size);
         Page<ProductInfo> productInfoPage = productInfoService.findAll(request);
         map.put("productInfoPage", productInfoPage);
@@ -68,10 +63,6 @@ public class SellerProductController {
     @RequestMapping("/on_sale")
     public ModelAndView onSale(@RequestParam("productId") String productId,
                                Map<String, Object> map,HttpSession session) {
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
         try {
             productInfoService.onSale(productId);
         } catch (SellException e) {
@@ -95,10 +86,6 @@ public class SellerProductController {
     @RequestMapping("/off_sale")
     public ModelAndView offSale(@RequestParam("productId") String productId,
                                 Map<String, Object> map,HttpSession session) {
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
         try {
             productInfoService.offSale(productId);
         } catch (SellException e) {
@@ -114,10 +101,6 @@ public class SellerProductController {
     @GetMapping("/index")
     public ModelAndView index(@RequestParam(value = "productId", required = false) String productId,
                               Map<String, Object> map,HttpSession session) {
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
         if (!StringUtils.isEmpty(productId)) {
             ProductInfo productInfo = productInfoService.findOne(productId);
             map.put("productInfo", productInfo);
@@ -132,10 +115,6 @@ public class SellerProductController {
     @GetMapping("/update")
     public ModelAndView update(@RequestParam(value = "productId", required = true) String productId,
                               Map<String, Object> map,HttpSession session) {
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
         if (!StringUtils.isEmpty(productId)) {
             ProductInfo productInfo = productInfoService.findOne(productId);
             map.put("productInfo", productInfo);
@@ -158,10 +137,6 @@ public class SellerProductController {
     public ModelAndView save(@Valid ProductForm form,
                              BindingResult bindingResult,
                              Map<String,Object>map,HttpSession session){
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
         //判断校验结果
         if(bindingResult.hasErrors()){
             map.put("msg", bindingResult.getFieldError().getDefaultMessage());

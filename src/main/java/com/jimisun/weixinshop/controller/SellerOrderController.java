@@ -33,6 +33,7 @@ public class SellerOrderController {
 
     /**
      * 订单列表
+     *
      * @param page 第几页, 从1页开始
      * @param size 一页有多少条数据
      * @return
@@ -42,11 +43,6 @@ public class SellerOrderController {
                              @RequestParam(value = "size", defaultValue = "10") Integer size,
                              Map<String, Object> map,
                              HttpSession session) {
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
-
         PageRequest request = new PageRequest(page - 1, size);
         Page<OrderDTO> orderDTOPage = orderService.findList(request);
         map.put("orderDTOPage", orderDTOPage);
@@ -57,6 +53,7 @@ public class SellerOrderController {
 
     /**
      * 取消订单
+     *
      * @param orderId
      * @return
      */
@@ -64,11 +61,6 @@ public class SellerOrderController {
     public ModelAndView cancel(@RequestParam("orderId") String orderId,
                                Map<String, Object> map,
                                HttpSession session) {
-
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
 
 
         try {
@@ -90,21 +82,19 @@ public class SellerOrderController {
 
     /**
      * 订单详情
+     *
      * @param orderId
      * @param map
      * @return
      */
     @GetMapping("/detail")
     public ModelAndView detail(@RequestParam("orderId") String orderId,
-                               Map<String, Object> map,HttpSession session) {
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
+                               Map<String, Object> map, HttpSession session) {
+
         OrderDTO orderDTO = new OrderDTO();
         try {
             orderDTO = orderService.findOne(orderId);
-        }catch (SellException e) {
+        } catch (SellException e) {
             log.error("【卖家端查询订单详情】发生异常{}", e);
             map.put("msg", e.getMessage());
             map.put("url", "/seller/order/list");
@@ -117,22 +107,14 @@ public class SellerOrderController {
 
     /**
      * 完结订单
+     *
      * @param orderId
      * @param map
      * @return
      */
     @GetMapping("/finish")
     public ModelAndView finished(@RequestParam("orderId") String orderId,
-                                 Map<String, Object> map,HttpSession session) {
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
-
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
+                                 Map<String, Object> map, HttpSession session) {
         try {
             OrderDTO orderDTO = orderService.findOne(orderId);
             orderService.finish(orderDTO);

@@ -2,7 +2,6 @@ package com.jimisun.weixinshop.controller;
 
 import com.jimisun.weixinshop.entity.Ad1;
 import com.jimisun.weixinshop.entity.Notice;
-import com.jimisun.weixinshop.enums.ResultVoCodeEnum;
 import com.jimisun.weixinshop.service.Ad1Service;
 import com.jimisun.weixinshop.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("")
-public class SellContentController {
+public class SellerContentController {
 
     @Autowired
     private NoticeService noticeService;
@@ -50,11 +49,7 @@ public class SellContentController {
      * @return
      */
     @RequestMapping("/notice/index")
-    public ModelAndView index(Map<String,Object> map,HttpSession session){
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
+    public ModelAndView index(Map<String,Object> map){
 
         //查询最新notice
         Notice notice = noticeService.findNew();
@@ -69,12 +64,7 @@ public class SellContentController {
     @RequestMapping("/notice/editNotice")
     public ModelAndView editNotice(Map<String,Object> map,
                                    String title,
-                                   String content,
-                                   HttpSession session){
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
+                                   String content){
 
         //查询最新notice
         Notice notice = noticeService.findNew();
@@ -95,11 +85,6 @@ public class SellContentController {
     @RequestMapping("/seller/ad1/list")
     public ModelAndView ad1List(Map<String,Object> map,
                                    HttpSession session){
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
-
         //查看所有List列表
         List<Ad1>ad1List =  ad1Service.findAd1All();
         map.put("ad1List",ad1List);
@@ -121,10 +106,6 @@ public class SellContentController {
     public ModelAndView goAd1Edit(Map<String,Object> map,
                                 Integer id,
                                 HttpSession session){
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
 
         Ad1 ad1 = ad1Service.findById(id);
         map.put("ad1",ad1);
@@ -145,10 +126,7 @@ public class SellContentController {
     public ModelAndView ad1Edit(Map<String,Object> map,
                                 Ad1 ad1,
                                 HttpSession session){
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
+
 
         //查询
         ad1Service.save(ad1);
@@ -170,11 +148,6 @@ public class SellContentController {
     public ModelAndView ad1Delete(Map<String,Object> map,
                                 Integer id,
                                 HttpSession session){
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
-
         ad1Service.deleteById(id);
 
         //跳转页面

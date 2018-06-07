@@ -42,10 +42,6 @@ public class SellerCustomerController {
                                      @RequestParam(value = "size", defaultValue = "10") Integer size,
                                      HttpSession session) {
 
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
 
         PageRequest request = new PageRequest(page - 1, size);
         Page<Customer> customerList = customerService.finAll(request);
@@ -66,13 +62,7 @@ public class SellerCustomerController {
      */
     @RequestMapping("/forbid")
     public ModelAndView customerforbid(Map<String, Object> map,
-                                       String username,
-                                       HttpSession session) {
-
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
+                                       String username) {
 
         try {
             Customer customer = new Customer();
@@ -94,15 +84,18 @@ public class SellerCustomerController {
 
     }
 
+    /**
+     * 设置客户状态为正常
+     *
+     * @param map
+     * @param username
+     * @param session
+     * @return
+     */
     @RequestMapping("/normal")
     public ModelAndView customerNormal(Map<String, Object> map,
-                                       String username,HttpSession session) {
+                                       String username, HttpSession session) {
 
-
-        if(!GoAdminController.checkAdmin(session)){
-            map.put("message",ResultVoCodeEnum.ADMIN_AUTH_MISS.getMsg());
-            return new ModelAndView("auth/login", map);
-        }
 
         try {
             Customer customer = new Customer();

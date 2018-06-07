@@ -80,15 +80,6 @@ public class GoAdminController {
 
     }
 
-    public  static  boolean checkAdmin(HttpSession session){
-        boolean flag = false;
-        if ((Admin)session.getAttribute("existAdmin")!=null){
-            flag=true;
-        }
-        return flag;
-    }
-
-
 
 
 }
